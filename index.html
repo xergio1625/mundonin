@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mundonin · Juguetería en Ovalle</title>
+<meta name="description" content="Mundonin, juguetería y librería en la Feria Modelo de Ovalle. Pasillo naranja, local 45.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf4ea; --card:#fffdf8; --ink:#3b2f2a; --muted:#7a6a5e;
+  --brand:#b5532b; --brand-ink:#ffffff; --accent:#3f7d5a; --line:#e8dcc8;
+  --warn:#c4302b; --amber:#9a5b00; --ok:#2f7a4f;
+  --radius:18px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#2a211c; --card:#362b25; --ink:#f7efe3; --muted:#c7b8a8; --line:#4a3c33;
+    --brand:#d8703f; --accent:#6fb88a;
+    --warn:#ff8a80; --amber:#ffb84d; --ok:#7fd6a0;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.5}
+h1,h2,h3{font-family:'Fredoka',system-ui,sans-serif;margin:0;line-height:1.15}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{height:40px;display:none}
+.brand .mark{font-family:'Fredoka';font-weight:700;font-size:1.5rem;color:var(--brand)}
+nav a{margin-left:14px;text-decoration:none;font-weight:700;font-size:.95rem}
+nav a:hover{color:var(--brand)}
+@media(max-width:620px){nav a.hide-sm{display:none}}
+@media(max-width:480px){.top .wrap{gap:6px}.brand .mark{font-size:1.25rem}nav{white-space:nowrap}nav a{margin-left:9px;font-size:.85rem}}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:700;padding:11px 18px;border-radius:999px;text-decoration:none;background:var(--brand);color:var(--brand-ink)}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn.wa{background:#1f9d55;color:#fff}
+.btn.sm{padding:8px 14px;font-size:.9rem}
+.hero{padding:44px 0 28px}
+.hero .wrap{display:grid;gap:28px;grid-template-columns:1.15fr .85fr;align-items:center}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem)}
+.hero h1 span{color:var(--brand)}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:46ch}
+.hero .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.place{background:var(--card);border:2px dashed var(--accent);border-radius:var(--radius);padding:20px}
+.place b{font-family:'Fredoka';font-size:1.15rem}
+.place p{margin:6px 0 0;font-size:1rem}
+section{padding:30px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.sec-head h2{font-size:1.7rem}
+.sec-head p{margin:2px 0 0;color:var(--muted)}
+.finder{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.finder form{display:grid;gap:12px;grid-template-columns:repeat(4,1fr);align-items:end}
+@media(max-width:760px){.finder form{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.finder form{grid-template-columns:1fr}}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:4px;color:var(--muted)}
+select,input[type=text],input[type=number],input[type=password],textarea{width:100%;font:inherit;padding:10px 12px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:700;padding:7px 14px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.thumb{aspect-ratio:1/1;display:grid;place-items:center;font-size:4.2rem;background:var(--tint,#ffe9d6);position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:10px;left:10px;font-weight:800;font-size:.8rem;padding:4px 10px;border-radius:999px;background:var(--card);border:2px solid currentColor}
+.badge.low{color:var(--warn)} .badge.mid{color:var(--amber)} .badge.ok{color:var(--ok)}
+.card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-size:1.05rem}
+.meta{color:var(--muted);font-size:.85rem}
+.price{font-family:'Fredoka';font-weight:700;font-size:1.3rem}
+.card .btn{margin-top:auto;justify-content:center}
+.empty{padding:26px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:var(--radius)}
+.story{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:grid;gap:18px;grid-template-columns:1fr 1fr}
+@media(max-width:760px){.story{grid-template-columns:1fr}}
+.story blockquote{margin:0;font-size:1.05rem}
+.photo-slot{min-height:200px;border-radius:14px;background:repeating-linear-gradient(45deg,var(--bg),var(--bg) 12px,var(--line) 12px,var(--line) 24px);display:grid;place-items:center;text-align:center;color:var(--muted);padding:16px;font-weight:700}
+footer{padding:28px 0 60px;color:var(--muted);border-top:1px solid var(--line);margin-top:20px}
+.fab{position:fixed;right:16px;bottom:16px;z-index:30;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+/* ===== animaciones y extras ===== */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease var(--d,0ms),transform .6s cubic-bezier(.2,.8,.2,1) var(--d,0ms)}
+.js .reveal.in{opacity:1;transform:none}
+.js .card.reveal.in{transition:transform .3s ease,box-shadow .3s ease,opacity .5s ease}
+.card:hover,.js .card.reveal.in:hover{transform:translateY(-6px) rotate(-.4deg);box-shadow:0 14px 28px rgba(59,47,42,.16)}
+.card:hover .thumb>span{animation:wiggle .6s}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg) scale(1.1)}60%{transform:rotate(10deg) scale(1.1)}}
+.badge.low{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.btn{transition:transform .15s ease,filter .15s ease}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn:active{transform:scale(.97)}
+.hero{position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+.floaters span{position:absolute;font-size:2.4rem;opacity:.22;animation:floaty 7s ease-in-out infinite;pointer-events:none}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+.stat{display:inline-flex;gap:8px;align-items:center;background:var(--bg);border:2px solid var(--accent);color:var(--ink);border-radius:999px;padding:4px 12px;font-weight:800;font-size:.9rem;margin-bottom:10px}
+.ticker{background:var(--brand);color:var(--brand-ink);overflow:hidden;white-space:nowrap;font-weight:700;font-size:.9rem}
+.ticker .track{display:inline-block;padding:7px 0;animation:tick 34s linear infinite}
+.ticker:hover .track{animation-play-state:paused}
+.ticker span{margin:0 22px}
+@keyframes tick{to{transform:translateX(-50%)}}
+.stages{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.stage{background:var(--card);border:2px solid var(--line);border-radius:var(--radius);padding:16px;text-align:left;font:inherit;color:var(--ink);cursor:pointer;transition:transform .2s,border-color .2s}
+a.stage{display:block;text-decoration:none}
+.stage:hover{transform:translateY(-4px);border-color:var(--brand)}
+.stage .em{font-size:2.2rem;display:block}
+.stage .age{display:inline-block;background:var(--brand);color:var(--brand-ink);border-radius:999px;font-size:.75rem;font-weight:800;padding:2px 10px;margin-top:6px}
+.stage h3{font-size:1.05rem;margin:6px 0 4px}
+.stage p{margin:0;color:var(--muted);font-size:.9rem}
+.vgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.vslot{border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--line)}
+.vbox{aspect-ratio:9/16;background:#000;display:grid;place-items:center;position:relative}
+.vbox video,.vbox iframe{width:100%;height:100%;border:0;object-fit:cover}
+.vbox.empty{background:repeating-linear-gradient(45deg,var(--bg),var(--bg) 12px,var(--line) 12px,var(--line) 24px);color:var(--muted);text-align:center;padding:16px;font-weight:700}
+.play{font-size:3rem;display:block;animation:pulse 2s ease-in-out infinite}
+.vcap{padding:10px 14px;font-weight:700}
+.famgrid{display:grid;gap:16px;grid-template-columns:1.2fr 1fr}
+@media(max-width:860px){.famgrid{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.panel h3{font-size:1.3rem}
+.panel p.sub{margin:2px 0 8px;color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
+.memgrid{display:grid;gap:8px;grid-template-columns:repeat(4,1fr);max-width:420px;margin:12px 0}
+.mcard{aspect-ratio:1/1;border:0;padding:0;background:none;perspective:600px;cursor:pointer}
+.mi{position:relative;display:block;width:100%;height:100%;transition:transform .4s;transform-style:preserve-3d}
+.mcard.flip .mi,.mcard.done .mi{transform:rotateY(180deg)}
+.mf,.mb{position:absolute;inset:0;display:grid;place-items:center;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;font-size:clamp(1.6rem,6vw,2.4rem)}
+.mf{background:var(--brand);color:var(--brand-ink)}
+.mb{background:var(--tint2,#f3e2c9);transform:rotateY(180deg);border:2px solid var(--line)}
+.mcard.done .mb{border-color:var(--accent);animation:pop .4s}
+@keyframes pop{50%{transform:rotateY(180deg) scale(1.12)}}
+.idea{background:var(--bg);border:2px dashed var(--accent);border-radius:14px;padding:14px;margin-top:12px;animation:ideain .4s ease}
+@keyframes ideain{from{opacity:0;transform:scale(.95)}}
+.idea h4{font-family:'Fredoka';font-size:1.2rem;margin:0 0 4px}
+.idea p{margin:4px 0}
+#dice.spin{display:inline-block;animation:spin .6s ease}
+@keyframes spin{to{transform:rotate(540deg)}}
+.challenge{margin-top:16px;background:var(--brand);color:var(--brand-ink);border-radius:var(--radius);padding:18px}
+.challenge h3{font-size:1.2rem}
+.challenge p{margin:6px 0 12px;font-size:1.05rem}
+.challenge .btn{background:var(--card);color:var(--ink)}
+.tips{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+@media(max-width:760px){.tips{grid-template-columns:1fr}}
+.tipgroup{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.tipgroup h3{margin-bottom:6px;font-size:1.25rem}
+details{border-top:1px solid var(--line);padding:8px 0}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;gap:8px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"＋";color:var(--brand);font-weight:800}
+details[open] summary::before{content:"－"}
+details p{margin:6px 0 2px 24px;color:var(--muted)}
+.heart{position:absolute;top:8px;right:8px;width:38px;height:38px;border-radius:50%;border:0;background:var(--card);color:var(--muted);font-size:1.25rem;cursor:pointer;display:grid;place-items:center;box-shadow:0 2px 6px rgba(0,0,0,.18);transition:transform .2s}
+.heart:hover{transform:scale(1.15)}
+.heart[aria-pressed=true]{color:#d6453f;animation:heartpop .35s}
+@keyframes heartpop{50%{transform:scale(1.4)}}
+.wishitem{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);align-items:center}
+.confetto{position:fixed;z-index:99;pointer-events:none;font-size:1.4rem;animation:fall 1.2s ease-out forwards}
+@keyframes fall{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}}
+.toast{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;z-index:90;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+/* ===== vistas, menú y artículos ===== */
+.view[hidden]{display:none}
+section{scroll-margin-top:70px}
+.viewhead{background:var(--card);border-bottom:1px solid var(--line);padding:22px 0}
+.viewhead h1{font-size:clamp(1.7rem,5vw,2.3rem)}
+.viewhead p{margin:4px 0 0;color:var(--muted)}
+.tiles{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tile{display:block;text-decoration:none;background:var(--card);border:2px solid var(--line);border-radius:var(--radius);padding:20px;transition:transform .2s,border-color .2s}
+.tile:hover{transform:translateY(-5px);border-color:var(--brand)}
+.tile .em{font-size:2.4rem;display:block}
+.tile h3{font-size:1.2rem;margin:6px 0 2px}
+.tile p{margin:0;color:var(--muted);font-size:.92rem}
+.top .wrap{position:relative}
+.menu{list-style:none;margin:0;padding:0;display:flex;gap:2px;align-items:center}
+.menu>li{position:relative}
+.menu a,.menu .dd-btn{display:block;margin:0;font:inherit;font-weight:700;font-size:.95rem;color:var(--ink);background:none;border:0;padding:8px 12px;border-radius:999px;cursor:pointer;text-decoration:none;white-space:normal;text-align:left}
+.menu a:hover,.menu .dd-btn:hover,.menu>li.cur>a,.menu>li.cur>.dd-btn{background:var(--line);color:var(--ink)}
+.sub{display:none;position:absolute;left:0;top:100%;min-width:240px;margin:0;padding:8px;list-style:none;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(59,47,42,.18);z-index:50}
+.sub a{border-radius:10px;font-weight:600}
+.dd.open>.sub{display:block}
+@media(hover:hover) and (min-width:761px){.dd:hover>.sub{display:block}}
+.burger{display:none}
+@media(max-width:760px){
+  .burger{display:inline-flex}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 16px 14px;box-shadow:0 12px 20px rgba(59,47,42,.15);max-height:75vh;overflow:auto}
+  .menu.open{display:flex}
+  .sub{position:static;box-shadow:none;border:0;background:none;padding:0 0 4px 14px;min-width:0}
+}
+.arttag{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;font-size:.75rem;font-weight:800;padding:2px 10px}
+.artcard .thumb{aspect-ratio:16/9;text-decoration:none}
+.artcard p{margin:0;color:var(--muted);font-size:.92rem}
+.artbody{max-width:720px;margin:0 auto}
+.artbody h2{font-size:clamp(1.6rem,4vw,2.2rem);margin:8px 0}
+.artbody p{font-size:1.08rem;margin:0 0 14px}
+.artbody img{width:100%;border-radius:var(--radius);margin:8px 0 14px}
+.artrel{margin-top:26px}
+/* admin */
+#admin{display:none}
+#admin.on{display:block}
+.admin-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.form-grid{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}
+@media(max-width:760px){.form-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.form-grid{grid-template-columns:1fr}}
+.span2{grid-column:span 2}
+@media(max-width:480px){.span2{grid-column:auto}}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tablewrap{overflow-x:auto}
+.qty{display:inline-flex;align-items:center;gap:6px}
+.qty button{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--bg);color:var(--ink);font-weight:800;cursor:pointer}
+.note{font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Mundonin, inicio">
+      <img id="logo" src="logo.png" alt="Mundonin" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.remove()">
+      <span class="mark">Mundonin</span>
+    </a>
+    <button class="burger btn alt sm" id="burger" aria-expanded="false" aria-controls="menu">☰ Menú</button>
+    <nav aria-label="Principal">
+      <ul class="menu" id="menu">
+        <li data-v="inicio"><a href="#inicio">Inicio</a></li>
+        <li class="dd" data-v="tienda"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">Tienda ▾</button>
+          <ul class="sub"><li><a href="#tienda">Ver toda la tienda</a></li><li><a href="#regalos">🎁 Buscador de regalos</a></li><li><a href="#catalogo">🧸 Catálogo</a></li><li><a href="#avisame">🔔 Avísame cuando llegue</a></li></ul></li>
+        <li class="dd" data-v="familia"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">En familia ▾</button>
+          <ul class="sub"><li><a href="#familia">🎮 Jugar en familia</a></li><li><a href="#imprimibles">🖨️ Imprimibles gratis</a></li><li><a href="#videos">🎬 Videos</a></li></ul></li>
+        <li class="dd" data-v="articulos"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">Consejos y opiniones ▾</button>
+          <ul class="sub"><li><a href="#articulos">📰 Artículos y opiniones</a></li><li><a href="#consejos">💡 Consejos rápidos</a></li></ul></li>
+        <li data-v="club"><a href="#club">⭐ Club</a></li>
+        <li class="dd" data-v="nosotros"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">Nosotros ▾</button>
+          <ul class="sub"><li><a href="#historia">🧡 Nuestra historia</a></li><li><a href="#preguntas">❓ Preguntas frecuentes</a></li><li><a href="#local">📍 Cómo llegar</a></li></ul></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="ticker" aria-hidden="true"><div class="track" id="trackTicker"></div></div>
+
+<main id="main">
+<div id="public">
+
+<div class="view" data-view="inicio">
+<section class="hero">
+  <div class="floaters" aria-hidden="true">
+    <span style="left:4%;top:12%">🧸</span><span style="left:46%;top:6%;animation-delay:-2s">🚗</span>
+    <span style="left:90%;top:14%;animation-delay:-4s">🦄</span><span style="left:8%;top:78%;animation-delay:-3s">🎲</span>
+    <span style="left:52%;top:84%;animation-delay:-5s">🐘</span><span style="left:92%;top:72%;animation-delay:-1s">🎒</span>
+  </div>
+  <div class="wrap">
+    <div>
+      <h1>Juguetes y útiles para <span>todas las edades</span>, en el corazón de la Feria Modelo</h1>
+      <p>Peluches, juegos de mesa, autos, animales, mochilas y artículos de librería. Cada producto es de pocas unidades: si te gustó, resérvalo por WhatsApp antes de que se acabe.</p>
+      <div class="cta">
+        <a class="btn" href="#regalos">🎁 Encuentra un regalo</a>
+        <a class="btn wa" id="heroWa" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+        <a class="btn alt" href="#familia">🎮 Jugar en familia</a>
+      </div>
+    </div>
+    <div class="place">
+      <div class="stat">🧸 <span id="statCount">0</span> productos disponibles hoy</div><br>
+      <b>📍 Feria Modelo de Ovalle</b>
+      <p>Pasillo naranja, local 45.</p>
+      <p id="hours"><b>Abierto:</b> lunes, miércoles, viernes y sábado, de 9:30 a 17:00.</p>
+    </div>
+  </div>
+</section>
+
+<section id="accesos">
+  <div class="wrap">
+    <div class="tiles">
+      <a class="tile reveal" href="#tienda"><span class="em" aria-hidden="true">🛍️</span><h3>Tienda</h3><p>Catálogo, buscador de regalos y tu lista de deseos.</p></a>
+      <a class="tile reveal" style="--d:70ms" href="#familia"><span class="em" aria-hidden="true">🎮</span><h3>En familia</h3><p>Juegos, imprimibles gratis y videos.</p></a>
+      <a class="tile reveal" style="--d:140ms" href="#articulos"><span class="em" aria-hidden="true">📰</span><h3>Consejos y opiniones</h3><p>Artículos para elegir mejor cada juguete.</p></a>
+      <a class="tile reveal" style="--d:210ms" href="#club"><span class="em" aria-hidden="true">⭐</span><h3>Club Mundonin</h3><p>Una cajita digital cada mes, con cupón para la tienda.</p></a>
+      <a class="tile reveal" style="--d:280ms" href="#nosotros"><span class="em" aria-hidden="true">🧡</span><h3>Nosotros</h3><p>Nuestra historia, preguntas y cómo llegar.</p></a>
+    </div>
+  </div>
+</section>
+
+<section id="nuevo">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>✨ Recién llegados</h2><p>Lo último que entró al local.</p></div></div>
+    <div class="grid" id="gridNew"></div>
+  </div>
+</section>
+
+<section id="ultimas">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>⏳ Últimas unidades</h2><p>Quedan pocas. Resérvalas y las guardamos para ti.</p></div></div>
+    <div class="grid" id="gridLow"></div>
+  </div>
+</section>
+
+<section id="ultimosArt">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>📰 Lo último en consejos y opiniones</h2><p>Lecturas cortas para elegir mejor.</p></div><a class="btn alt sm" href="#articulos">Ver todos</a></div>
+    <div class="grid" id="homeArts"></div>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="tienda" hidden>
+<div class="viewhead"><div class="wrap"><h1>🛍️ Tienda</h1><p>Encuentra el regalo ideal. Cada producto tiene pocas unidades: reserva por WhatsApp.</p></div></div>
+<section id="regalos">
+  <div class="wrap">
+    <div class="finder">
+      <div class="sec-head"><div><h2>🎁 ¿Qué regalo busco?</h2><p>Cuéntanos la edad y cuánto quieres gastar.</p></div></div>
+      <form id="finderForm">
+        <div><label for="fAge">Edad del niño o niña</label>
+          <select id="fAge"><option value="">Cualquiera</option><option value="0">0 a 1 año</option><option value="2">2 a 3 años</option><option value="4">4 a 6 años</option><option value="7">7 a 9 años</option><option value="10">10 años o más</option></select></div>
+        <div><label for="fBudget">Presupuesto</label>
+          <select id="fBudget"><option value="">Sin límite</option><option value="5000">Hasta $5.000</option><option value="10000">Hasta $10.000</option><option value="20000">Hasta $20.000</option><option value="40000">Hasta $40.000</option></select></div>
+        <div><label for="fOcc">Ocasión</label>
+          <select id="fOcc"><option value="">Cualquiera</option><option>Cumpleaños</option><option>Navidad</option><option>Detalle</option><option>Regreso a clases</option></select></div>
+        <div><button class="btn" type="submit" style="width:100%;justify-content:center">Ver ideas</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="etapas">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>🌱 Jugar según la edad</h2><p>Cada etapa aprende de una forma distinta. Toca una para ver los productos que van con ella.</p></div></div>
+    <div class="stages" id="stages"></div>
+  </div>
+</section>
+
+<section id="catalogo">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Catálogo</h2><p id="countTxt"></p></div></div>
+    <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
+    <div class="grid" id="gridAll"></div>
+    <div class="empty" id="emptyAll" hidden>No hay productos con ese filtro por ahora. Déjanos tu pedido más abajo y te avisamos cuando llegue algo parecido.</div>
+    <div class="panel reveal" id="avisame" style="margin-top:18px">
+      <h3>🔔 Avísame cuando llegue</h3>
+      <p class="sub">¿No encontraste lo que buscabas o se agotó? Cuéntanos qué quieres y te escribimos apenas entre al local.</p>
+      <form id="notifyForm" class="row">
+        <div style="flex:2;min-width:200px"><label for="nWhat">¿Qué estás buscando?</label><input type="text" id="nWhat" maxlength="80" placeholder="Ej: dinosaurio grande, mochila, ludo" required></div>
+        <div style="flex:1;min-width:140px"><label for="nAge">Edad (opcional)</label><input type="text" id="nAge" maxlength="20" placeholder="Ej: 4 años"></div>
+        <button class="btn" type="submit">Avísame por WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="lista" style="display:none">
+  <div class="wrap">
+    <div class="panel reveal">
+      <h3>💝 Mi lista de deseos</h3>
+      <p class="sub">Guarda lo que te gustó y compártela con la familia: así los regalos no se repiten.</p>
+      <div id="wishList"></div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" id="wishShare">Compartir con la familia</button>
+        <a class="btn wa" id="wishWa" target="_blank" rel="noopener" href="#">Reservar mi lista por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="familia" hidden>
+<div class="viewhead"><div class="wrap"><h1>🎮 En familia</h1><p>Juegos, hojas para imprimir y videos para pasar un buen rato juntos.</p></div></div>
+<section id="familia">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>🎮 Jugar en familia</h2><p>Juegos para hacer juntos, desde el celular o con los juguetes que tengan en casa.</p></div></div>
+    <div class="famgrid">
+      <div class="panel reveal">
+        <h3>🧠 Memorice de animales</h3>
+        <p class="sub">Encuentra las parejas. Pásale el celular a otro y compitan por menos intentos.</p>
+        <div class="row">
+          <div><label for="memLevel">Nivel</label><select id="memLevel"><option value="6">Fácil (6 parejas)</option><option value="8">Normal (8 parejas)</option></select></div>
+          <button class="btn alt sm" id="memRestart">Nueva partida</button>
+          <b id="memMoves" aria-live="polite">Intentos: 0</b>
+        </div>
+        <div class="memgrid" id="memgrid"></div>
+        <p id="memMsg" aria-live="polite"></p>
+      </div>
+      <div class="panel reveal" style="--d:120ms">
+        <h3>🎲 ¿A qué jugamos hoy?</h3>
+        <p class="sub">Dinos cuántos son y qué edad tiene el menor. Te damos una idea.</p>
+        <div class="row">
+          <div><label for="iAge">Edad</label><select id="iAge"><option value="1">1 a 2 años</option><option value="3" selected>3 a 4 años</option><option value="5">5 a 6 años</option><option value="7">7 a 8 años</option><option value="9">9 a 10 años</option><option value="11">11 o más</option></select></div>
+          <div><label for="iPlayers">Personas</label><select id="iPlayers"><option value="2">2</option><option value="3" selected>3 o 4</option><option value="5">5 o más</option></select></div>
+          <button class="btn" id="ideaBtn"><span id="dice">🎲</span> Sorpréndeme</button>
+        </div>
+        <div id="ideaOut" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="challenge reveal">
+      <h3>⭐ Reto familiar de la semana</h3>
+      <p id="challengeText"></p>
+      <button class="btn sm" id="challengeShare">Compartir el reto</button>
+    </div>
+  </div>
+</section>
+
+<section id="imprimibles">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>🖨️ Imprimibles gratis</h2><p>Hojas para imprimir en casa: pasen la tarde jugando juntos.</p></div></div>
+    <div class="stages">
+      <a class="stage reveal" href="imprimibles.html#laberinto"><span class="em" aria-hidden="true">🧩</span><h3>Laberinto</h3><p>Nuevo cada vez, con tres niveles.</p></a>
+      <a class="stage reveal" style="--d:70ms" href="imprimibles.html#sopa"><span class="em" aria-hidden="true">🔤</span><h3>Sopa de letras</h3><p>Animales escondidos para encontrar.</p></a>
+      <a class="stage reveal" style="--d:140ms" href="imprimibles.html#colorear"><span class="em" aria-hidden="true">🖍️</span><h3>Para colorear</h3><p>El osito y el auto.</p></a>
+      <a class="stage reveal" style="--d:210ms" href="imprimibles.html#diploma"><span class="em" aria-hidden="true">🏅</span><h3>Diploma</h3><p>Con el nombre de quien juega.</p></a>
+      <a class="stage reveal" style="--d:280ms" href="imprimibles.html#calendario"><span class="em" aria-hidden="true">📅</span><h3>Calendario de retos</h3><p>Una actividad por semana para toda la familia.</p></a>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>🎬 Mundonin en video</h2><p>Mira los juguetes en acción antes de venir.</p></div></div>
+    <div class="vgrid" id="vgrid"></div>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="consejos" hidden>
+<div class="viewhead"><div class="wrap"><h1>💡 Consejos</h1><p>Ideas simples para elegir, regalar y cuidar los juguetes.</p></div></div>
+<section id="consejos">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>💡 Consejos para jugar mejor</h2><p>Ideas simples para elegir, regalar y cuidar los juguetes.</p></div></div>
+    <div class="tips" id="tips"></div>
+    <p class="note" style="margin-top:12px">Son consejos generales. Ante cualquier duda sobre el desarrollo o la salud de tu hijo o hija, consulta a su pediatra.</p>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="articulos" hidden>
+<div class="viewhead"><div class="wrap"><h1>📰 Consejos y opiniones</h1><p>Artículos de Mundonin sobre juguetes, regalos y juegos en familia.</p></div></div>
+<section id="articulos">
+  <div class="wrap">
+    <div id="artList">
+      <div class="chips" id="artChips" role="group" aria-label="Tipo de artículo"></div>
+      <div class="grid" id="artGrid"></div>
+      <div class="panel reveal" style="margin-top:18px">
+        <h3>✍️ ¿Compraste algo en Mundonin?</h3>
+        <p class="sub">Cuéntanos tu opinión sobre el juguete. Si nos das permiso, la publicamos aquí para ayudar a otras familias.</p>
+        <a class="btn wa" id="opinionWa" target="_blank" rel="noopener" href="#">Enviar mi opinión por WhatsApp</a>
+      </div>
+    </div>
+    <article id="artView" hidden></article>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="club" hidden>
+<div class="viewhead"><div class="wrap"><h1>⭐ Club Mundonin</h1><p>Una cajita digital cada mes con cosas para imprimir, un juego para coleccionar y una actividad para hacer en familia. Más un cupón de descuento en la juguetería.</p></div></div>
+
+<section id="clubBeneficios">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>Qué trae cada cajita</h2><p>Todo pensado para jugar en familia, mes a mes.</p></div></div>
+    <div class="tiles">
+      <div class="tile reveal"><span class="em" aria-hidden="true">🖨️</span><h3>Para imprimir</h3><p>Laberintos, sopas de letras, láminas para colorear y juegos para recortar.</p></div>
+      <div class="tile reveal" style="--d:70ms"><span class="em" aria-hidden="true">🧩</span><h3>Un juego para coleccionar</h3><p>Un juego de mesa, o una parte de uno, que se va completando mes a mes.</p></div>
+      <div class="tile reveal" style="--d:140ms"><span class="em" aria-hidden="true">🏕️</span><h3>Juego manual de fin de semana</h3><p>Una actividad para hacer con las manos, en familia, con instrucciones paso a paso.</p></div>
+      <div class="tile reveal" style="--d:210ms"><span class="em" aria-hidden="true">🎟️</span><h3>Cupón de descuento</h3><p>Cada mes, un cupón para canjear en la juguetería de la Feria Modelo.</p></div>
+      <div class="tile reveal" style="--d:280ms"><span class="em" aria-hidden="true">📧</span><h3>Novedades por correo</h3><p>Te contamos qué trae la cajita antes de cada entrega.</p></div>
+      <div class="tile reveal" style="--d:350ms"><span class="em" aria-hidden="true">💳</span><h3>Pago simple y sin ataduras</h3><p>Cobro mensual con tarjeta. Te das de baja online cuando quieras.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="clubPack">
+  <div class="wrap">
+    <div class="panel reveal">
+      <h3>🎁 Prueba primero: material de muestra gratis</h3>
+      <p class="sub">Mira cómo son las hojas antes de decidir. Ya hay laberintos, sopas de letras, láminas para colorear, diplomas y un calendario de retos.</p>
+      <div class="row">
+        <a class="btn" href="imprimibles.html">Ver imprimibles gratis</a>
+        <a class="btn wa" id="clubSampleWa" target="_blank" rel="noopener" href="#">Preguntar por el Club por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="unirme">
+  <div class="wrap">
+    <div class="famgrid">
+      <div class="panel reveal" style="border:3px solid var(--brand)">
+        <h3>Club Mundonin</h3>
+        <p style="margin:6px 0"><span class="price" style="font-size:2.2rem" id="clubPrice"></span> <span class="note">al mes</span></p>
+        <ul style="padding-left:20px;margin:8px 0 0">
+          <li>Material para imprimir cada mes</li>
+          <li>Un juego de mesa, o parte de uno, para coleccionar</li>
+          <li>Un juego manual para hacer en un fin de semana en familia</li>
+          <li>Cupón mensual de descuento en la juguetería</li>
+          <li>Correos con las novedades de cada cajita</li>
+          <li>Pago mensual con tarjeta y baja online cuando quieras</li>
+        </ul>
+      </div>
+      <div class="panel reveal" style="--d:100ms">
+        <h3>Quiero unirme</h3>
+        <p class="sub">Completa tus datos y sigue al paso final. No guardamos tus datos en esta web.</p>
+        <form id="clubForm" class="form-grid" style="grid-template-columns:1fr">
+          <div><label for="cName">Tu nombre</label><input type="text" id="cName" maxlength="40" required></div>
+          <div><label for="cMail">Tu correo</label><input type="text" id="cMail" inputmode="email" maxlength="80" required placeholder="nombre@correo.cl"></div>
+          <div><label for="cAge">Edad del niño o niña</label><select id="cAge"><option>3 a 5 años</option><option>6 a 8 años</option><option>9 años o más</option></select></div>
+          <div class="row"><button class="btn" type="submit">Quiero unirme al Club</button></div>
+        </form>
+        <p class="note" style="margin-top:10px">¿Ya eres socio? <a href="#" id="clubCancel">Darme de baja</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="clubFaq">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>Preguntas del Club</h2></div></div>
+    <div class="panel reveal" id="clubFaqList"></div>
+  </div>
+</section>
+</div>
+
+<div class="view" data-view="nosotros" hidden>
+<div class="viewhead"><div class="wrap"><h1>🧡 Nosotros</h1><p>Quiénes somos, preguntas frecuentes y cómo llegar.</p></div></div>
+<section id="historia">
+  <div class="wrap">
+    <div class="story">
+      <div>
+        <h2>Mundonin nació del cariño</h2>
+        <blockquote>
+          <p>Lleva el nombre de quien soñó este local de feria en Ovalle y lo atendió con ganas todos los días. Hoy lo sigue su esposa, con el mismo cariño.</p>
+          <p>Este invierno las lluvias golpearon fuerte al local, y lo levantamos de nuevo con esfuerzo y apoyo de la familia. Seguimos aquí, con las puertas abiertas, y con juguetes, peluches, juegos y útiles para toda la familia.</p>
+          <p>Gracias por elegirnos. Cada compra ayuda a que este sueño siga vivo.</p>
+        </blockquote>
+      </div>
+      <div class="photo-slot">Aquí irán fotos del local (puesto, estantes, fachada).<br>Sin personas, solo el local.</div>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>❓ Preguntas frecuentes</h2><p>Lo que más nos consultan.</p></div></div>
+    <div class="panel reveal" id="faq"></div>
+  </div>
+</section>
+
+<section id="local">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Visítanos</h2></div></div>
+    <div class="place">
+      <b>Feria Modelo de Ovalle · Pasillo naranja, local 45</b>
+      <p>Ovalle, Región de Coquimbo.</p>
+      <p><b>Abierto:</b> lunes, miércoles, viernes y sábado, de 9:30 a 17:00.</p>
+      <p><b>Teléfono / WhatsApp:</b> <a href="tel:+56952890171">+56 9 5289 0171</a></p>
+      <p style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px">
+        <a class="btn sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Feria+Modelo+de+Ovalle">Cómo llegar</a>
+        <a class="btn wa sm" id="localWa" target="_blank" rel="noopener" href="#">WhatsApp</a>
+      </p>
+    </div>
+  </div>
+</section>
+</div>
+
+</div>
+
+<!-- Panel interno -->
+<div id="admin">
+  <div class="wrap" style="padding-top:24px;padding-bottom:40px">
+    <div class="sec-head"><div><h2>Panel de Mundonin</h2><p>Carga productos desde el celular. Lo que llega a 0 se oculta solo.</p></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn alt sm" id="btnExit">Salir del panel</button></div></div>
+
+    <div class="admin-box">
+      <h3 style="margin-bottom:10px" id="formTitle">Agregar producto</h3>
+      <form id="prodForm" class="form-grid">
+        <div class="span2"><label for="pName">Nombre</label><input type="text" id="pName" required maxlength="60"></div>
+        <div><label for="pCat">Categoría</label><select id="pCat"></select></div>
+        <div><label for="pPrice">Precio (CLP)</label><input type="number" id="pPrice" min="0" step="100" required inputmode="numeric"></div>
+        <div><label for="pStock">Cantidad</label><input type="number" id="pStock" min="0" value="5" required inputmode="numeric"></div>
+        <div><label for="pAge">Edad desde → hasta</label>
+          <div style="display:flex;gap:6px"><input type="number" id="pAgeMin" min="0" max="15" value="3" aria-label="Edad mínima"><input type="number" id="pAgeMax" min="0" max="99" value="6" aria-label="Edad máxima"></div></div>
+        <div class="span2"><label for="pOcc">Ocasiones (separadas por coma)</label><input type="text" id="pOcc" placeholder="Cumpleaños, Navidad, Detalle"></div>
+        <div><label for="pEmoji">Ícono (si no hay foto)</label><input type="text" id="pEmoji" maxlength="4" value="🧸"></div>
+        <div class="span2"><label for="pPhoto">Foto (desde la cámara o galería)</label><input type="file" id="pPhoto" accept="image/*"></div>
+        <div style="align-self:end"><button class="btn" type="submit" id="btnSave">Guardar</button> <button class="btn alt sm" type="button" id="btnCancel" hidden>Cancelar</button></div>
+      </form>
+    </div>
+
+    <div class="admin-box" style="margin-top:16px">
+      <h3 style="margin-bottom:10px">Inventario</h3>
+      <div class="tablewrap"><table><thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th></th></tr></thead><tbody id="adminRows"></tbody></table></div>
+      <p class="note" style="margin-top:10px">Este panel es de prueba: los datos se guardan solo en este navegador. En la versión final se conectará a una base de datos.</p>
+      <p><button class="btn alt sm" id="btnReset">Restaurar datos de ejemplo</button></p>
+    </div>
+
+    <div class="admin-box" style="margin-top:16px">
+      <h3 id="aFormTitle" style="margin-bottom:10px">Agregar artículo</h3>
+      <form id="artForm" class="form-grid">
+        <div class="span2"><label for="aTitle">Título</label><input type="text" id="aTitle" required maxlength="90"></div>
+        <div><label for="aTag">Tipo</label><select id="aTag"></select></div>
+        <div class="span2"><label for="aSummary">Resumen (1 o 2 frases)</label><input type="text" id="aSummary" required maxlength="160"></div>
+        <div><label for="aCat">Producto relacionado</label><select id="aCat"></select></div>
+        <div style="grid-column:1/-1"><label for="aBody">Texto (separa los párrafos con una línea en blanco)</label><textarea id="aBody" rows="9" required></textarea></div>
+        <div><label for="aEmoji">Ícono</label><input type="text" id="aEmoji" maxlength="4" value="📰"></div>
+        <div class="span2"><label for="aPhoto">Foto (opcional)</label><input type="file" id="aPhoto" accept="image/*"></div>
+        <div style="align-self:end"><button class="btn" type="submit">Publicar</button> <button class="btn alt sm" type="button" id="aCancel" hidden>Cancelar</button></div>
+      </form>
+    </div>
+
+    <div class="admin-box" style="margin-top:16px">
+      <h3 style="margin-bottom:10px">Artículos publicados</h3>
+      <div class="tablewrap"><table><thead><tr><th>Título</th><th>Tipo</th><th></th></tr></thead><tbody id="artRows"></tbody></table></div>
+      <p class="note" style="margin-top:10px">Los artículos de ejemplo son borradores: edítalos o bórralos antes de publicar la web.</p>
+      <p><button class="btn alt sm" id="aReset">Restaurar artículos de ejemplo</button></p>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <p><button class="btn alt sm" id="siteShare">📲 Comparte Mundonin con tu familia</button></p>
+  © Mundonin · Feria Modelo de Ovalle, pasillo naranja, local 45.
+</div></footer>
+<div class="toast" id="toast" role="status"></div>
+<a class="btn wa fab" id="fabWa" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬 WhatsApp</a>
+
+<script>
+/* ===== Configuración (editar aquí) ===== */
+const WA_NUMBER = "56952890171";
+const ADMIN_PIN = "mundonin";              // prototipo; la versión final usará acceso real
+const STORE_KEY = "mundonin.products.v1";
+const CATS = ["Peluches","Animales","Juegos de mesa","Autos y carritos","Muñecas","Mochilas","Librería"];
+const TINTS = ["#f3e2c9","#dcebd8","#f6d9cc","#e6e0cf","#f9ebb8","#d9e6e3"];
+
+/* ===== Datos de ejemplo ===== */
+const day = 86400000, now = Date.now();
+const SEED = [
+ {name:"Oso de peluche grande",cat:"Peluches",price:12990,stock:6,ageMin:0,ageMax:10,occ:["Cumpleaños","Navidad","Detalle"],emoji:"🧸",t:2},
+ {name:"Set de animales de la granja",cat:"Animales",price:7990,stock:8,ageMin:2,ageMax:6,occ:["Cumpleaños","Navidad"],emoji:"🐄",t:1},
+ {name:"Dinosaurios articulados x6",cat:"Animales",price:9990,stock:2,ageMin:3,ageMax:8,occ:["Cumpleaños","Navidad"],emoji:"🦖",t:0},
+ {name:"Ludo y Dama clásicos",cat:"Juegos de mesa",price:6990,stock:7,ageMin:5,ageMax:99,occ:["Cumpleaños","Navidad","Detalle"],emoji:"🎲",t:5},
+ {name:"Dominó clásico",cat:"Juegos de mesa",price:4990,stock:9,ageMin:6,ageMax:99,occ:["Detalle","Navidad"],emoji:"🁢",t:6},
+ {name:"Auto a fricción para niños",cat:"Autos y carritos",price:5990,stock:10,ageMin:1,ageMax:4,occ:["Cumpleaños","Detalle"],emoji:"🚗",t:3},
+ {name:"Camión de carga grande",cat:"Autos y carritos",price:13990,stock:3,ageMin:2,ageMax:6,occ:["Cumpleaños","Navidad"],emoji:"🚚",t:1},
+ {name:"Carrito de muñecas",cat:"Muñecas",price:15990,stock:5,ageMin:2,ageMax:6,occ:["Cumpleaños","Navidad"],emoji:"👶",t:4},
+ {name:"Muñeca bebé con accesorios",cat:"Muñecas",price:11990,stock:1,ageMin:2,ageMax:7,occ:["Cumpleaños","Navidad"],emoji:"🎀",t:0},
+ {name:"Mochila con diseño infantil",cat:"Mochilas",price:17990,stock:6,ageMin:4,ageMax:12,occ:["Regreso a clases","Cumpleaños"],emoji:"🎒",t:7},
+ {name:"Estuche con 3 compartimentos",cat:"Librería",price:3990,stock:9,ageMin:5,ageMax:14,occ:["Regreso a clases","Detalle"],emoji:"✏️",t:8},
+ {name:"Set de lápices de colores x24",cat:"Librería",price:2990,stock:8,ageMin:4,ageMax:14,occ:["Regreso a clases","Detalle"],emoji:"🖍️",t:9},
+ {name:"Peluche unicornio",cat:"Peluches",price:8990,stock:2,ageMin:2,ageMax:10,occ:["Cumpleaños","Navidad","Detalle"],emoji:"🦄",t:0},
+ {name:"Sonajero y mordedor bebé",cat:"Animales",price:3490,stock:7,ageMin:0,ageMax:1,occ:["Detalle","Cumpleaños"],emoji:"🐤",t:6},
+].map((p,i)=>({...p,id:"s"+i,created:now-p.t*day,img:""}));
+
+/* ===== Estado ===== */
+let products = load();
+let activeCat = "Todas";
+let finder = {age:"",budget:"",occ:""};
+
+function load(){
+  try{ const raw = localStorage.getItem(STORE_KEY); if(raw) return JSON.parse(raw); }catch(e){}
+  return SEED.map(p=>({...p}));
+}
+function save(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(products)); return true; }
+  catch(e){ alert("No se pudo guardar (¿foto muy pesada?). Prueba con otra foto."); return false; }
+}
+const $ = s => document.querySelector(s);
+const clp = n => "$" + Number(n).toLocaleString("es-CL");
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const waLink = (txt) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(txt)}`;
+
+/* ===== Tarjetas ===== */
+function badge(p){
+  if(p.stock<=2) return `<span class="badge low">${p.stock===1?"Queda 1":"Quedan "+p.stock}</span>`;
+  if(p.stock<=4) return `<span class="badge mid">Quedan ${p.stock}</span>`;
+  return `<span class="badge ok">Disponible</span>`;
+}
+function ageText(p){ return p.ageMax>=99 ? `Desde ${p.ageMin} años` : (p.ageMin===p.ageMax? `${p.ageMin} años` : `${p.ageMin} a ${p.ageMax} años`); }
+function card(p, i){
+  const tint = TINTS[(p.id.length+i)%TINTS.length];
+  const media = p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">` : `<span aria-hidden="true">${esc(p.emoji||"🎁")}</span>`;
+  const msg = `Hola Mundonin, quiero reservar: ${p.name} (${clp(p.price)}). ¿Sigue disponible?`;
+  const liked = wish.includes(p.id);
+  return `<article class="card reveal" style="--d:${(i%8)*60}ms"><div class="thumb" style="--tint:${tint}">${media}${badge(p)}<button class="heart" data-id="${p.id}" aria-pressed="${liked}" aria-label="Guardar en mi lista de deseos">${liked?"♥":"♡"}</button></div>
+    <div class="body"><h3>${esc(p.name)}</h3><div class="meta">${esc(p.cat)} · ${ageText(p)}</div>
+    <div class="price">${clp(p.price)}</div>
+    <a class="btn sm wa" target="_blank" rel="noopener" href="${waLink(msg)}">Reservar por WhatsApp</a></div></article>`;
+}
+const available = () => products.filter(p=>p.stock>0);
+
+function matchFinder(p){
+  const {age,budget,occ} = finder;
+  if(age!==""){ const a=+age; const top = a===0?1 : a===2?3 : a===4?6 : a===7?9 : 99; const bot = a===10?10:a; if(p.ageMax<bot || p.ageMin>top) return false; }
+  if(budget!=="" && p.price>+budget) return false;
+  if(occ && !(p.occ||[]).includes(occ)) return false;
+  return true;
+}
+
+function render(){
+  const av = available();
+  const fillGrid = (sel, arr, emptyMsg) => { $(sel).innerHTML = arr.length ? arr.map(card).join("") : `<div class="empty" style="grid-column:1/-1">${emptyMsg}</div>`; };
+  fillGrid("#gridNew", [...av].sort((a,b)=>b.created-a.created).slice(0,4), "Pronto habrá novedades.");
+  const low = av.filter(p=>p.stock<=2);
+  fillGrid("#gridLow", low, "Por ahora no hay productos con pocas unidades.");
+  $("#ultimas").style.display = low.length ? "" : "none";
+  const list = av.filter(p=>(activeCat==="Todas"||p.cat===activeCat) && matchFinder(p));
+  $("#gridAll").innerHTML = list.map(card).join("");
+  $("#emptyAll").hidden = list.length>0;
+  $("#countTxt").textContent = `${list.length} ${list.length===1?"producto":"productos"} disponibles`;
+  const cats = ["Todas", ...CATS];
+  afterRender(av.length);
+  $("#chips").innerHTML = cats.map(c=>`<button class="chip" aria-pressed="${c===activeCat}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+}
+$("#chips").addEventListener("click", e=>{ const b=e.target.closest(".chip"); if(!b) return; activeCat=b.dataset.c; render(); });
+$("#finderForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  finder = {age:$("#fAge").value, budget:$("#fBudget").value, occ:$("#fOcc").value};
+  activeCat = "Todas"; render();
+  goTo("catalogo");
+});
+
+/* ===== WhatsApp general ===== */
+const hello = waLink("Hola Mundonin, quisiera consultar por un producto.");
+["#heroWa","#localWa","#fabWa"].forEach(s=>$(s).href = hello);
+
+/* ===== Panel interno ===== */
+let editing = null, pendingImg = null;
+const VIEWS = ["inicio","tienda","familia","consejos","articulos","club","nosotros"];
+const SEC = {nuevo:"inicio",ultimas:"inicio",ultimosArt:"inicio",regalos:"tienda",etapas:"tienda",catalogo:"tienda",lista:"tienda",avisame:"tienda",videos:"familia",imprimibles:"familia",preguntas:"nosotros",historia:"nosotros",local:"nosotros",unirme:"club",clubPack:"club",clubBeneficios:"club",clubFaq:"club"};
+function goTo(id){ if(location.hash==="#"+id) route(); else location.hash=id; }
+function closeMenus(keepBurger){
+  document.querySelectorAll("#menu .dd.open").forEach(li=>{ li.classList.remove("open"); li.firstElementChild.setAttribute("aria-expanded","false"); });
+  if(!keepBurger){ $("#menu").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); }
+}
+$("#burger").onclick = () => { const o=$("#menu").classList.toggle("open"); $("#burger").setAttribute("aria-expanded",o); };
+$("#menu").addEventListener("click", e=>{
+  const b=e.target.closest(".dd-btn");
+  if(b){ const li=b.parentElement, was=li.classList.contains("open"); closeMenus(true); li.classList.toggle("open",!was); b.setAttribute("aria-expanded",!was); return; }
+  const a=e.target.closest("a"); if(a){ if(a.getAttribute("href")===location.hash) setTimeout(route,0); closeMenus(); }
+});
+document.addEventListener("click", e=>{ if(!e.target.closest("#menu,#burger")) closeMenus(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeMenus(); });
+function route(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  const isAdmin = h === "admin";
+  let ok = false;
+  try{ ok = !!sessionStorage.getItem("mn_ok"); }catch(e){}
+  if(isAdmin && !ok){
+    const pin = prompt("Clave del panel:");
+    if(pin !== ADMIN_PIN){ location.hash = ""; return; }
+    try{ sessionStorage.setItem("mn_ok","1"); }catch(e){}
+  }
+  $("#admin").classList.toggle("on", isAdmin);
+  $("#public").style.display = isAdmin ? "none" : "";
+  $("#fabWa").style.display = isAdmin ? "none" : "";
+  if(isAdmin){ renderAdmin(); renderAdminArts(); window.scrollTo(0,0); return; }
+  let view="inicio", target=null, art=null;
+  if(h.startsWith("articulo/")){ view="articulos"; art=h.slice(9); }
+  else if(h==="consejos"){ view="consejos"; }
+  else if(VIEWS.includes(h)) view=h;
+  else if(SEC[h]){ view=SEC[h]; target=h; }
+  document.querySelectorAll(".view").forEach(v=>{ v.hidden = v.dataset.view!==view; });
+  document.querySelectorAll("#menu>li").forEach(li=>li.classList.toggle("cur", li.dataset.v===view));
+  closeMenus();
+  render(); renderArticles(art);
+  const el = target && document.getElementById(target);
+  if(el) el.scrollIntoView({behavior:"smooth"}); else window.scrollTo(0,0);
+}
+window.addEventListener("hashchange", route);
+$("#btnExit").onclick = () => { location.hash = ""; };
+
+$("#pCat").innerHTML = CATS.map(c=>`<option>${c}</option>`).join("");
+
+function renderAdmin(){
+  const rows = [...products].sort((a,b)=>b.created-a.created).map(p=>`
+    <tr><td>${esc(p.emoji||"")} ${esc(p.name)}<div class="note">${esc(p.cat)}${p.stock===0?" · AGOTADO (oculto)":""}</div></td>
+    <td>${clp(p.price)}</td>
+    <td><span class="qty"><button data-a="dec" data-id="${p.id}" aria-label="Restar">−</button><b>${p.stock}</b><button data-a="inc" data-id="${p.id}" aria-label="Sumar">+</button></span></td>
+    <td><button class="btn alt sm" data-a="edit" data-id="${p.id}">Editar</button> <button class="btn alt sm" data-a="del" data-id="${p.id}">Borrar</button></td></tr>`).join("");
+  $("#adminRows").innerHTML = rows;
+}
+$("#adminRows").addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  const p = products.find(x=>x.id===b.dataset.id); if(!p) return;
+  if(b.dataset.a==="inc") p.stock++;
+  if(b.dataset.a==="dec") p.stock = Math.max(0,p.stock-1);
+  if(b.dataset.a==="del"){ if(!confirm(`¿Borrar "${p.name}"?`)) return; products = products.filter(x=>x!==p); }
+  if(b.dataset.a==="edit"){ startEdit(p); return; }
+  save(); renderAdmin();
+});
+function startEdit(p){
+  editing = p.id; pendingImg = null;
+  $("#formTitle").textContent = "Editar producto";
+  $("#pName").value=p.name; $("#pCat").value=p.cat; $("#pPrice").value=p.price; $("#pStock").value=p.stock;
+  $("#pAgeMin").value=p.ageMin; $("#pAgeMax").value=p.ageMax; $("#pOcc").value=(p.occ||[]).join(", "); $("#pEmoji").value=p.emoji||"";
+  $("#btnCancel").hidden=false; window.scrollTo({top:0,behavior:"smooth"});
+}
+function resetForm(){ editing=null; pendingImg=null; $("#prodForm").reset(); $("#pStock").value=5; $("#pAgeMin").value=3; $("#pAgeMax").value=6; $("#pEmoji").value="🧸"; $("#formTitle").textContent="Agregar producto"; $("#btnCancel").hidden=true; }
+$("#btnCancel").onclick = resetForm;
+
+$("#pPhoto").addEventListener("change", e=>{
+  const f = e.target.files[0]; if(!f) return;
+  const img = new Image(); const url = URL.createObjectURL(f);
+  img.onload = () => {
+    const max=700, s=Math.min(1, max/Math.max(img.width,img.height));
+    const c=document.createElement("canvas"); c.width=Math.round(img.width*s); c.height=Math.round(img.height*s);
+    c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+    pendingImg = c.toDataURL("image/jpeg",.72); URL.revokeObjectURL(url);
+  };
+  img.src = url;
+});
+$("#prodForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  const data = {
+    name:$("#pName").value.trim(), cat:$("#pCat").value, price:+$("#pPrice").value, stock:Math.max(0,+$("#pStock").value),
+    ageMin:+$("#pAgeMin").value, ageMax:+$("#pAgeMax").value,
+    occ:$("#pOcc").value.split(",").map(s=>s.trim()).filter(Boolean), emoji:$("#pEmoji").value.trim()||"🎁"
+  };
+  if(editing){
+    const p = products.find(x=>x.id===editing); Object.assign(p,data); if(pendingImg) p.img=pendingImg;
+  } else {
+    products.push({...data, id:"p"+Date.now(), created:Date.now(), img:pendingImg||""});
+  }
+  if(save()){ resetForm(); renderAdmin(); }
+});
+$("#btnReset").onclick = () => { if(confirm("Esto reemplaza todo por los datos de ejemplo. ¿Seguro?")){ products = SEED.map(p=>({...p})); save(); renderAdmin(); } };
+
+/* ===== Extras: animaciones, videos, familia, consejos ===== */
+const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let wish = []; try{ wish = JSON.parse(localStorage.getItem("mundonin.wish")||"[]"); }catch(e){}
+const saveWish = () => { try{ localStorage.setItem("mundonin.wish", JSON.stringify(wish)); }catch(e){} };
+const siteUrl = () => location.href.split("#")[0];
+
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("on"); clearTimeout(toast.t); toast.t=setTimeout(()=>t.classList.remove("on"),2200); }
+function confetti(x,y){
+  if(REDUCE) return;
+  const bits=["🎉","⭐","🧸","🎈","✨","🎁"];
+  for(let i=0;i<18;i++){
+    const s=document.createElement("span"); s.className="confetto"; s.textContent=bits[i%bits.length];
+    s.style.left=x+"px"; s.style.top=y+"px";
+    s.style.setProperty("--dx",(Math.random()*240-120)+"px"); s.style.setProperty("--dy",(Math.random()*-200-40)+"px"); s.style.setProperty("--r",(Math.random()*360)+"deg");
+    document.body.appendChild(s); setTimeout(()=>s.remove(),1300);
+  }
+}
+function share(text,u){
+  const url = u || siteUrl();
+  if(navigator.share){ navigator.share({text,url}).catch(()=>{}); }
+  else window.open(`https://wa.me/?text=${encodeURIComponent(text+"\n"+url)}`,"_blank","noopener");
+}
+
+/* aparecer al hacer scroll */
+const io = ("IntersectionObserver" in window) ? new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }),{threshold:.12}) : null;
+function reveal(){ document.querySelectorAll(".reveal:not(.in)").forEach(el=> io ? io.observe(el) : el.classList.add("in")); }
+
+/* contador animado */
+let shownCount = -1;
+function countUp(n){
+  const el=$("#statCount"); if(!el || n===shownCount) return; shownCount=n;
+  if(REDUCE){ el.textContent=n; return; }
+  const t0=performance.now(); (function step(t){ const k=Math.min(1,(t-t0)/900); el.textContent=Math.round(n*k); if(k<1) requestAnimationFrame(step); })(t0);
+}
+function afterRender(n){ countUp(n); renderWish(); reveal(); }
+
+/* cinta superior */
+(function(){
+  const msgs=["🧸 Pocas unidades de cada producto","📲 Reserva por WhatsApp","📍 Feria Modelo de Ovalle · pasillo naranja · local 45","🎁 Regalo envuelto en el local","🕘 Lun, mié, vie y sáb de 9:30 a 17:00"];
+  const html=msgs.map(m=>`<span>${m}</span>`).join("");
+  $("#trackTicker").innerHTML = html+html;
+})();
+
+/* ----- Videos ----- */
+/* Para agregar un video: pon su archivo en la carpeta "videos" y escribe src:"videos/nombre.mp4",
+   o usa YouTube con src:"youtube:ID_DEL_VIDEO". Verticales (9:16) se ven mejor. poster: foto de portada opcional. */
+const VIDEOS = [
+  {title:"Recorrido por el local", src:"", poster:""},
+  {title:"Las novedades de la semana", src:"", poster:""},
+  {title:"Un juguete en acción", src:"", poster:""},
+  {title:"Consejo de la semana", src:"", poster:""}
+];
+function renderVideos(){
+  $("#vgrid").innerHTML = VIDEOS.map((v,i)=>{
+    let box;
+    if(!v.src) box=`<div class="vbox empty"><div><span class="play" aria-hidden="true">▶</span>Próximamente</div></div>`;
+    else if(v.src.startsWith("youtube:")) box=`<div class="vbox"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.src.slice(8))}" title="${esc(v.title)}" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+    else box=`<div class="vbox"><video controls playsinline preload="none" ${v.poster?`poster="${esc(v.poster)}"`:""} src="${esc(v.src)}"></video></div>`;
+    return `<figure class="vslot reveal" style="margin:0;--d:${i*80}ms">${box}<figcaption class="vcap">${esc(v.title)}</figcaption></figure>`;
+  }).join("");
+}
+
+/* ----- Etapas ----- */
+const STAGES = [
+  {a:"0",age:"0 a 1 año",em:"🍼",t:"Descubrir con los sentidos",d:"Texturas, sonidos suaves y colores fuertes. Todo va a la boca: busca piezas grandes y resistentes."},
+  {a:"2",age:"2 a 3 años",em:"🚗",t:"Moverse y hacer solo",d:"Empuja, apila y lleva cosas de un lado a otro. Autos, animales grandes y juegos de imitar."},
+  {a:"4",age:"4 a 6 años",em:"🧸",t:"Imaginar y compartir",d:"Inventan historias con muñecas, peluches y animales. Los primeros juegos con reglas simples."},
+  {a:"7",age:"7 a 9 años",em:"🎲",t:"Pensar y crear",d:"Estrategia, lectura, dibujo y coleccionar. Juegos de mesa y útiles que invitan a crear."},
+  {a:"10",age:"10 años o más",em:"🧩",t:"Retos y jugar en grupo",d:"Desafíos más largos, juegos con amigos y la familia, y útiles propios para el colegio."}
+];
+$("#stages").innerHTML = STAGES.map((s,i)=>`<button class="stage reveal" style="--d:${i*70}ms" data-a="${s.a}"><span class="em" aria-hidden="true">${s.em}</span><span class="age">${s.age}</span><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></button>`).join("");
+$("#stages").addEventListener("click",e=>{
+  const b=e.target.closest(".stage"); if(!b) return;
+  finder={age:b.dataset.a,budget:"",occ:""}; $("#fAge").value=b.dataset.a; $("#fBudget").value=""; $("#fOcc").value="";
+  activeCat="Todas"; render(); goTo("catalogo");
+});
+
+/* ----- Consejos ----- */
+const TIPS = [
+  {t:"🎯 Cómo elegir bien", items:[
+    ["Usa la edad del envase como guía","Las edades recomendadas existen por seguridad y por desarrollo. Un juguete muy difícil frustra, y uno muy simple aburre rápido."],
+    ["Prefiere juguetes que se usen de muchas formas","Animales, autos, bloques y muñecos sirven para inventar historias distintas cada día y crecen con el niño o la niña."],
+    ["Elige por intereses, no por colores","A cualquier niño o niña le pueden gustar los autos, las muñecas, los animales o los juegos de mesa. Fíjate en lo que le llama la atención."],
+    ["Menos juguetes, mejor jugados","Guardar algunos y rotarlos cada semana hace que parezcan nuevos."]]},
+  {t:"🛡️ Seguridad", items:[
+    ["Menores de 3 años: cuidado con las piezas pequeñas","Si una pieza cabe dentro de un tubo de papel higiénico, puede causar atragantamiento. Evítala para los más chicos."],
+    ["Pilas botón e imanes","Guárdalos fuera del alcance. Si un niño traga una pila botón o un imán, acude de inmediato a urgencias."],
+    ["Revisa el juguete de vez en cuando","Mira si hay piezas sueltas, bordes rotos o pintura que se descascara. Si está dañado, retíralo."],
+    ["Lee la etiqueta","Busca la edad recomendada, las advertencias y los datos del fabricante o importador."]]},
+  {t:"👨‍👩‍👧 Jugar en familia", items:[
+    ["15 minutos sin pantallas","Un rato corto y diario, donde el niño o la niña decide a qué jugar, vale más que una tarde larga con la cabeza en otra cosa."],
+    ["Perder también enseña","En los juegos de mesa, acuerden reglas de la casa. Aprenden a esperar turnos, a perder y a celebrar al otro."],
+    ["Que jueguen las generaciones","Dominó, ludo o cartas conectan a abuelos, padres y nietos. Pídele al niño que te enseñe un juego nuevo."]]},
+  {t:"🎁 Regalar bien y cuidar", items:[
+    ["Pregunta antes de regalar","Si puedes, consulta a los papás qué ya tienen. La lista de deseos de esta página sirve justamente para eso."],
+    ["Un regalo que se comparta","Algo para jugar de a dos o más dura más que uno que se usa solo. Un juego de mesa es buena idea."],
+    ["Cuida los peluches y las piezas","Lava los peluches según la etiqueta y guarda las piezas pequeñas en bolsitas para que no se pierdan."],
+    ["Mochilas: peso razonable","Como referencia, la mochila cargada no debería pasar de un 10% del peso del niño o la niña."]]}
+];
+$("#tips").innerHTML = TIPS.map((g,i)=>`<div class="tipgroup reveal" style="--d:${i*80}ms"><h3>${g.t}</h3>${g.items.map(([q,a])=>`<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("")}</div>`).join("");
+
+/* ----- Lista de deseos ----- */
+function wishText(){
+  const items = wish.map(id=>products.find(p=>p.id===id)).filter(Boolean);
+  return "Mi lista de deseos en Mundonin 🎁\n" + items.map(p=>`• ${p.name} (${clp(p.price)})`).join("\n") + "\nFeria Modelo de Ovalle, pasillo naranja, local 45.";
+}
+function renderWish(){
+  const items = wish.map(id=>products.find(p=>p.id===id)).filter(Boolean);
+  $("#lista").style.display = items.length ? "" : "none";
+  $("#wishList").innerHTML = items.map(p=>`<div class="wishitem"><span>${esc(p.emoji||"🎁")} <b>${esc(p.name)}</b> · ${clp(p.price)}${p.stock<=0?" (agotado)":""}</span><button class="btn alt sm" data-rm="${p.id}">Quitar</button></div>`).join("");
+  $("#wishWa").href = waLink("Hola Mundonin, quisiera reservar estos productos:\n" + items.filter(p=>p.stock>0).map(p=>`• ${p.name} (${clp(p.price)})`).join("\n"));
+}
+document.addEventListener("click", e=>{
+  const h = e.target.closest(".heart");
+  if(h){
+    const id=h.dataset.id; const on=!wish.includes(id);
+    wish = on ? [...wish,id] : wish.filter(x=>x!==id); saveWish();
+    document.querySelectorAll(`.heart[data-id="${id}"]`).forEach(b=>{ b.setAttribute("aria-pressed",on); b.textContent = on?"♥":"♡"; });
+    renderWish(); toast(on?"Guardado en tu lista 💝":"Quitado de tu lista");
+    if(on){ const r=h.getBoundingClientRect(); confetti(r.left+r.width/2, r.top+r.height/2); }
+    return;
+  }
+  const rm = e.target.closest("[data-rm]");
+  if(rm){ wish = wish.filter(x=>x!==rm.dataset.rm); saveWish(); render(); return; }
+  const wa = e.target.closest(".card a.wa");
+  if(wa){ confetti(e.clientX, e.clientY); }
+});
+$("#wishShare").onclick = () => share(wishText());
+$("#siteShare").onclick = () => share("Mira Mundonin, la juguetería de la Feria Modelo de Ovalle 🧸");
+
+/* ----- Memorice ----- */
+const ANIMALS = ["🐶","🐱","🐄","🐘","🦁","🐸","🐧","🦄","🐢","🦋"];
+let mem = {first:null,lock:false,moves:0,found:0,pairs:6};
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function memStart(){
+  const pairs=+$("#memLevel").value;
+  mem={first:null,lock:false,moves:0,found:0,pairs};
+  const deck = shuffle([...ANIMALS.slice(0,pairs),...ANIMALS.slice(0,pairs)]);
+  $("#memgrid").innerHTML = deck.map((a,i)=>`<button class="mcard" data-i="${i}" data-a="${a}" aria-label="Carta ${i+1}" style="--tint2:${TINTS[i%TINTS.length]}"><span class="mi"><span class="mf" aria-hidden="true">❓</span><span class="mb" aria-hidden="true">${a}</span></span></button>`).join("");
+  $("#memMoves").textContent="Intentos: 0"; $("#memMsg").textContent="";
+}
+$("#memgrid").addEventListener("click", e=>{
+  const c=e.target.closest(".mcard"); if(!c||mem.lock||c.classList.contains("flip")||c.classList.contains("done")) return;
+  c.classList.add("flip"); c.setAttribute("aria-label",`Carta ${+c.dataset.i+1}: ${c.dataset.a}`);
+  if(!mem.first){ mem.first=c; return; }
+  mem.moves++; $("#memMoves").textContent="Intentos: "+mem.moves;
+  const a=mem.first, b=c; mem.first=null;
+  if(a.dataset.a===b.dataset.a){
+    a.classList.replace("flip","done"); b.classList.replace("flip","done"); mem.found++;
+    if(mem.found===mem.pairs){
+      $("#memMsg").innerHTML = `¡Lo lograste en ${mem.moves} intentos! 🎉 <button class="btn sm" id="memShare">Reta a tu familia</button>`;
+      const r=b.getBoundingClientRect(); confetti(r.left+r.width/2,r.top);
+      $("#memShare").onclick=()=>share(`Resolví el memorice de Mundonin en ${mem.moves} intentos. ¿Puedes ganarme? 🧠`);
+    }
+  } else {
+    mem.lock=true;
+    setTimeout(()=>{ [a,b].forEach(x=>{ x.classList.remove("flip"); x.setAttribute("aria-label",`Carta ${+x.dataset.i+1}`); }); mem.lock=false; }, 800);
+  }
+});
+$("#memRestart").onclick = memStart; $("#memLevel").onchange = memStart;
+
+/* ----- ¿A qué jugamos hoy? ----- */
+const IDEAS = [
+  {t:"Sonidos y texturas",min:0,max:2,pmin:2,pmax:3,time:"10 min",cat:"Animales",how:"Muestra un sonajero y un peluche suave, cambia el ritmo y la voz. Deja que el bebé los toque y los mire con calma."},
+  {t:"Carrera de autos con rampa",min:2,max:7,pmin:2,pmax:5,time:"15 min",cat:"Autos y carritos",how:"Armen una rampa con un libro o una tabla. Cada uno elige un auto y adivina cuál llegará más lejos. Midan la distancia con pasos."},
+  {t:"Zoológico en el living",min:2,max:8,pmin:2,pmax:6,time:"20 min",cat:"Animales",how:"Ordenen los animales por tamaño, por dónde viven o por el sonido que hacen. Cada persona imita a uno."},
+  {t:"Té de peluches",min:2,max:7,pmin:2,pmax:5,time:"20 min",cat:"Peluches",how:"Preparen una mesa para los peluches. Cada invitado tiene nombre y una historia. Se turnan para servir."},
+  {t:"Hospital de peluches",min:3,max:8,pmin:2,pmax:4,time:"20 min",cat:"Peluches",how:"Un peluche se siente mal: ¿qué le pasa? Revísenlo, cuídenlo y cuenten cómo se cuida uno cuando está enfermo."},
+  {t:"Cuento en cadena",min:3,max:99,pmin:2,pmax:8,time:"10 min",cat:"Peluches",how:"Elijan tres juguetes y cada persona agrega una frase al cuento. Gana el final más loco."},
+  {t:"Detective de animales",min:4,max:9,pmin:2,pmax:6,time:"15 min",cat:"Animales",how:"Una persona esconde un animal y da tres pistas. Los demás preguntan solo con sí o no hasta adivinar."},
+  {t:"Mochila exploradora",min:4,max:10,pmin:2,pmax:5,time:"30 min",cat:"Mochilas",how:"Cada uno arma su mochila para una aventura dentro de casa. ¿Qué llevarías a la selva? Después cuentan el viaje."},
+  {t:"Ludo en familia",min:5,max:99,pmin:2,pmax:4,time:"25 min",cat:"Juegos de mesa",how:"Pongan una regla de la casa: quien llega primero elige el próximo juego. Perder también es pasar un buen rato."},
+  {t:"Dibuja y adivina",min:5,max:99,pmin:3,pmax:8,time:"20 min",cat:"Librería",how:"Un dibujo por turno, sin hablar. Quien adivina dibuja el siguiente. Ideal para estrenar lápices nuevos."},
+  {t:"Torneo de dominó",min:6,max:99,pmin:2,pmax:4,time:"30 min",cat:"Juegos de mesa",how:"Un torneo entre generaciones: abuelos, padres e hijos. Anoten los puntos y premien con un abrazo."}
+];
+let lastIdea=-1;
+$("#ideaBtn").onclick = () => {
+  const age=+$("#iAge").value, pl=+$("#iPlayers").value;
+  let pool=IDEAS.filter(i=>age>=i.min&&age<=i.max&&pl>=i.pmin&&pl<=i.pmax);
+  if(!pool.length) pool=IDEAS.filter(i=>age>=i.min&&age<=i.max);
+  if(!pool.length) pool=IDEAS;
+  let idea; do{ idea=pool[Math.floor(Math.random()*pool.length)]; }while(pool.length>1&&IDEAS.indexOf(idea)===lastIdea);
+  lastIdea=IDEAS.indexOf(idea);
+  const d=$("#dice"); d.classList.remove("spin"); void d.offsetWidth; d.classList.add("spin");
+  $("#ideaOut").innerHTML = `<div class="idea"><h4>${esc(idea.t)}</h4><p>${esc(idea.how)}</p><p class="note">⏱ ${esc(idea.time)} · Con: ${esc(idea.cat)}</p><div class="row" style="margin-top:8px"><button class="btn sm" id="ideaCat">Ver ${esc(idea.cat)} en el catálogo</button><button class="btn alt sm" id="ideaShare">Compartir idea</button></div></div>`;
+  $("#ideaCat").onclick=()=>{ finder={age:"",budget:"",occ:""}; $("#fAge").value="";$("#fBudget").value="";$("#fOcc").value=""; activeCat=idea.cat; render(); goTo("catalogo"); };
+  $("#ideaShare").onclick=()=>share(`Idea para jugar hoy: ${idea.t}. ${idea.how}`);
+};
+
+/* ----- Reto de la semana ----- */
+const CHALLENGES = [
+  "Construyan la torre más alta con lo que haya en casa. ¡Tómenle una foto!",
+  "Inventen un cuento de cinco frases usando tres juguetes.",
+  "Jueguen 15 minutos sin pantallas. El niño o la niña decide las reglas.",
+  "Armen un zoológico y ordenen los animales por tamaño.",
+  "Una partida de dominó o ludo entre tres generaciones.",
+  "Carrera de autos: ¿cuántos lugares de la casa pueden recorrer?",
+  "Dibujen a la familia como animales y adivinen quién es quién.",
+  "Enséñale a un niño un juego que tú jugabas a su edad."
+];
+const chal = CHALLENGES[Math.floor(Date.now()/(7*864e5)) % CHALLENGES.length];
+$("#challengeText").textContent = chal;
+$("#challengeShare").onclick = () => share("Reto familiar de la semana de Mundonin ⭐: " + chal);
+
+/* ----- Avísame cuando llegue ----- */
+$("#notifyForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  const what=$("#nWhat").value.trim(), age=$("#nAge").value.trim();
+  if(!what) return;
+  window.open(waLink(`Hola Mundonin, ¿me pueden avisar cuando llegue: ${what}${age?` (para ${age})`:""}?`),"_blank","noopener");
+  toast("Listo, te avisamos por WhatsApp 🔔"); e.target.reset();
+});
+
+/* ----- Preguntas frecuentes ----- */
+/* Las respuestas marcadas con (*) conviene confirmarlas con la dueña y ajustarlas. */
+const FAQS = [
+  ["¿Dónde están y cuándo atienden?","Estamos en la Feria Modelo de Ovalle, pasillo naranja, local 45. Atendemos lunes, miércoles, viernes y sábado, de 9:30 a 17:00."],
+  ["¿Cómo reservo un producto?","Toca “Reservar por WhatsApp” en el producto que te guste. Te confirmamos que siga disponible y coordinamos el retiro en el local."],
+  ["¿Lo que veo en la página está disponible?","Tenemos pocas unidades de cada producto y se venden rápido. Por eso siempre confirmamos la disponibilidad por WhatsApp antes de cerrar la reserva."],
+  ["¿Y si el producto que quiero está agotado?","Usa “Avísame cuando llegue” en el catálogo y te escribimos apenas entre algo parecido."],
+  ["¿Hacen envíos? (*)","Escríbenos por WhatsApp con tu comuna y te confirmamos si llegamos a tu zona y las opciones disponibles."],
+  ["¿Qué medios de pago tienen? (*)","Consúltanos por WhatsApp los medios de pago disponibles al momento de reservar."],
+  ["¿Cómo sé qué juguete es adecuado para la edad?","Usa el buscador de regalos o las etapas de “Jugar según la edad”. Revisa también la sección de consejos y la edad recomendada del envase."],
+  ["¿Qué hago si tengo un problema con un producto? (*)","Escríbenos por WhatsApp contándonos qué pasó y lo vemos juntos."]
+];
+$("#faq").innerHTML = FAQS.map(([q,a])=>`<details><summary>${esc(q.replace(" (*)",""))}</summary><p>${esc(a)}</p></details>`).join("");
+
+/* ===== Artículos: consejos y opiniones ===== */
+const ART_KEY = "mundonin.articles.v1";
+const ART_TAGS = ["Opinión","Guía","Reseña","Consejo"];
+const dAgo = n => now - n*day;
+const ART_SEED = [
+ {id:"a1",title:"Por qué un peluche bien elegido nunca pasa de moda",tag:"Opinión",cat:"Peluches",emoji:"🧸",created:dAgo(2),
+  summary:"Los juguetes con luces cambian cada año; el peluche sigue en la cama de los niños. Te contamos por qué y cómo elegir uno.",
+  body:"Los juguetes con pantalla y luces cambian cada año, pero el peluche sigue en la cama de los niños generación tras generación. No es solo nostalgia: un peluche no le pide nada al niño, lo acompaña.\n\nA los 2 o 3 años, el peluche es el primer amigo con quien conversar, a quien consolar y con quien practicar lo que ven en casa: dar de comer, cuidar, hacer dormir. Es juego simbólico, y es una de las formas más naturales de expresar lo que sienten.\n\nCómo elegir uno: que sea suave, que las costuras estén firmes, que los ojos y la nariz estén bien sujetos (sobre todo para menores de 3 años) y que se pueda lavar. El tamaño importa: uno que el niño pueda abrazar con los dos brazos es el que más se usa.\n\nSi dudas entre varios, fíjate en cuál toma primero el niño en el local. Ese casi nunca falla."},
+ {id:"a2",title:"Juegos de mesa clásicos: cinco razones para volver a la mesa",tag:"Opinión",cat:"Juegos de mesa",emoji:"🎲",created:dAgo(5),
+  summary:"En una casa llena de celulares, un juego de mesa logra que todos levanten la mirada. Estas son nuestras razones.",
+  body:"En una casa con celulares por todos lados, un juego de mesa logra algo difícil: que todos levanten la mirada. Estas son cinco razones por las que seguimos recomendando los clásicos.\n\n1. Se entienden en dos minutos. Ludo, dominó y damas tienen reglas simples, y ahí está su gracia.\n2. Juegan todas las edades. Un niño de 6 años y su abuelo pueden competir en igualdad.\n3. Enseñan a perder, y eso a veces vale más que ganar.\n4. No necesitan pilas ni internet. Funcionan en un corte de luz, en la playa o en una sobremesa.\n5. Duran. Un buen juego pasa de hermano a hermano, y después a los primos.\n\nNuestra opinión: un clásico en la casa rinde más que cualquier novedad que se guarda a la semana. Pasa por el local y te mostramos cuáles tenemos."},
+ {id:"a3",title:"Regreso a clases: cómo elegir mochila y útiles sin gastar de más",tag:"Guía",cat:"Mochilas",emoji:"🎒",created:dAgo(9),
+  summary:"Tres ideas simples para que la mochila y los útiles duren todo el año.",
+  body:"Febrero y marzo llegan rápido. Antes de comprar, tres ideas simples para que la mochila y los útiles duren todo el año.\n\nLa mochila: que tenga espalda acolchada y tirantes anchos, que cierre bien y que el niño pueda ponérsela solo. Como referencia, cargada no debería pasar del 10% de su peso. Que tenga el diseño que le gusta ayuda más de lo que parece: se la querrá poner.\n\nLos útiles: revisa la lista del colegio antes de salir y compra primero lo esencial. Los lápices de colores y los estuches se pueden ir completando.\n\nTip: marca todo con el nombre. Un estuche sin nombre es un estuche perdido.\n\nEn Mundonin tenemos mochilas con diseño y artículos de librería. Consúltanos por disponibilidad, porque de cada modelo tenemos pocas unidades."},
+ {id:"a4",title:"Animales de juguete: un regalo que crece con los niños",tag:"Opinión",cat:"Animales",emoji:"🐘",created:dAgo(13),
+  summary:"Un set de animales sirve a los 2 años y sigue sirviendo a los 8. Por eso lo recomendamos tanto.",
+  body:"Un set de animales sirve a los 2 años y sigue sirviendo a los 8. A los 2, se nombran y se imitan sus sonidos. A los 4, se arman granjas y zoológicos. A los 7, aparecen historias enteras con rescates, viajes y aventuras.\n\nPor eso los recomendamos como regalo: no se quedan chicos, no dependen de pilas y le dejan al niño toda la libertad para inventar.\n\nQué mirar: figuras de un solo cuerpo y sin partes que se desprendan si el niño es menor de 3 años, y una variedad de tamaños para que el juego sea más rico.\n\nUn buen truco para la familia: pidan que el niño les cuente de dónde viene cada animal. Es una buena excusa para conversar."},
+ {id:"a5",title:"Autos y carritos de 1 a 6 años: qué mirar antes de comprar",tag:"Guía",cat:"Autos y carritos",emoji:"🚗",created:dAgo(17),
+  summary:"No todos los autos sirven para todas las edades. Esto es lo que revisamos antes de recomendar uno.",
+  body:"Los autos son de los juguetes que más rápido se hacen amigos del niño. Pero no todos sirven para todas las edades. Esto es lo que revisamos antes de recomendar uno.\n\nDe 1 a 2 años: autos grandes, de una pieza y sin partes pequeñas. Que rueden fácil y resistan golpes.\n\nDe 3 a 4 años: camiones, autos de carga y rampas. Les gusta transportar cosas y llenarlos.\n\nDe 5 a 6 años: aparecen las carreras, las pistas y el juego en grupo.\n\nSiempre: revisa que las ruedas estén firmes y que no haya bordes filosos. Y si el auto es para regalar, mejor uno que se pueda jugar entre varios niños."},
+ {id:"a6",title:"Qué regalar en Navidad sin pasarse del presupuesto",tag:"Guía",cat:"Juegos de mesa",emoji:"🎄",created:dAgo(0),
+  summary:"Una fórmula simple de tres regalos para que Navidad sea linda sin que la cuenta se dispare.",
+  body:"Diciembre se llena de gastos, y los juguetes suelen ser lo que más pesa. Nuestra recomendación es pensar en tres niveles en vez de buscar un solo regalo grande.\n\n1. Un detalle pequeño: algo para abrir primero y que dé alegría de inmediato, como un animal, un auto pequeño o un set de lápices.\n2. Un regalo principal: el que el niño pidió o el que sabes que usará todos los días. Aquí conviene invertir un poco más.\n3. Algo para compartir: un juego de mesa o de cartas que se pueda jugar el mismo 24 con toda la familia.\n\nEl consejo que más nos agradecen: decide el presupuesto total antes de salir, y repártelo entre los tres. Se evitan las compras impulsivas y el niño recibe un regalo más equilibrado.\n\nUn aviso honesto: de cada producto tenemos pocas unidades, y en Navidad se van rápido. Si ya sabes qué quieres, reserva por WhatsApp y te lo guardamos. También puedes armar tu lista de deseos en esta página y compartirla con la familia para que no se repitan los regalos."},
+ {id:"a7",title:"Cumpleaños infantil: qué regalar cuando no conoces al niño",tag:"Guía",cat:"Animales",emoji:"🎂",created:dAgo(1),
+  summary:"Un regalo seguro para el cumpleaños del amigo o compañero, aunque no sepas qué le gusta.",
+  body:"Te invitaron a un cumpleaños, tienes poco tiempo y no sabes qué le gusta al niño. Pasa seguido. Estas son las ideas que más aciertan.\n\nSets de animales: gustan a casi todas las edades, no necesitan pilas y se combinan con lo que el niño ya tiene. Es lo más seguro cuando no hay información.\n\nJuegos de mesa clásicos: perfectos desde los 5 años. Además del regalo, regalas un rato en familia.\n\nArtículos de librería: lápices de colores, estuches o cuadernos con diseño. Útiles, ordenados y siempre bienvenidos.\n\nQué evitar: juguetes muy específicos de una serie o personaje, porque pueden repetirse, y cualquier cosa con piezas muy pequeñas si no sabes la edad exacta.\n\nSi nos cuentas la edad y cuánto quieres gastar por WhatsApp, te sugerimos tres opciones en minutos. Y si pasas por el local, te ayudamos a elegir con el producto en la mano."},
+ {id:"a8",title:"Abuelos: cómo regalar a los nietos y acertar siempre",tag:"Opinión",cat:"Autos y carritos",emoji:"👵",created:dAgo(3),
+  summary:"Cinco ideas para que el regalo de los abuelos sea el que más se use, y no el que se guarda.",
+  body:"Los abuelos regalan con el corazón, y a veces el regalo llega demasiado grande, demasiado complicado o repetido. Después de ver a muchas familias elegir, esto es lo que recomendamos.\n\n1. Pregunta primero a los papás. En un mensaje te dicen qué tienen y qué falta.\n2. Elige algo para jugar juntos. Un juego de mesa o un set de autos que se pueda jugar con el nieto vale más que cualquier cosa que se use solo.\n3. Piensa en el espacio. En muchas casas no cabe un juguete enorme. Es mejor algo mediano y bien hecho.\n4. Revisa la edad. Lo que dice el envase es la mejor guía.\n5. Acompaña el regalo con un rato. Una tarde de juego contigo es lo que el nieto va a recordar.\n\nNuestra opinión: el mejor regalo de abuelos no es el más caro, es el que se juega esa misma tarde. Escríbenos con la edad del nieto y te recomendamos algo concreto."},
+ {id:"a9",title:"Por qué conviene comprar juguetes en el local de la feria",tag:"Opinión",cat:"Peluches",emoji:"📍",created:dAgo(4),
+  summary:"Ver, tocar y comparar tamaños: razones para pasar por el local antes de decidir.",
+  body:"Las fotos ayudan, pero un juguete se entiende mejor en la mano. Estas son las razones por las que, para un regalo, vale la pena pasar por el local.\n\nPuedes ver el tamaño real. Un peluche puede parecer enorme en una foto y ser pequeño en persona, o al revés.\n\nPuedes comparar. Tener varias opciones a la vista ayuda a decidir en minutos.\n\nTe llevas el regalo ese mismo día. Sin esperas ni despachos, y puedes revisarlo antes de pagar.\n\nTe atiende una persona. Cuéntanos la edad y el presupuesto, y te sugerimos opciones concretas.\n\nY apoyas a un negocio familiar de Ovalle. Mundonin lleva años en la feria y sigue gracias a las familias que vuelven.\n\nEstamos en la Feria Modelo de Ovalle, pasillo naranja, local 45, de lunes, miércoles, viernes y sábado de 9:30 a 17:00. Si prefieres adelantarte, reserva por WhatsApp y te dejamos el producto guardado."},
+ {id:"a10",title:"Arma tu pack de regalo: combinaciones que siempre funcionan",tag:"Guía",cat:"Librería",emoji:"🎁",created:dAgo(7),
+  summary:"Dos o tres productos pequeños que juntos se sienten como un regalo completo.",
+  body:"A veces un solo regalo se siente corto, y uno más grande se sale del presupuesto. La solución que más resulta es combinar dos o tres cosas pequeñas.\n\nPack artista: set de lápices de colores, un estuche y un cuaderno. Ideal desde los 4 años y muy útil antes del regreso a clases.\n\nPack cuentos: un peluche y un libro o cuaderno para dibujar. Un regalo que invita a inventar historias.\n\nPack aventura: un set de animales y una mochila pequeña para llevarlos de paseo.\n\nPack familia: un juego de mesa clásico y algo rico para comer mientras juegan.\n\nCómo armarlo: elige un tema, junta dos o tres cosas que combinen y entrégalas juntas. Se ve más cuidado y rinde más que un solo regalo del mismo costo.\n\nEn Mundonin puedes ver las opciones en el local y reservarlas por WhatsApp. Cuéntanos cuánto quieres gastar y la edad, y te proponemos un pack a tu medida."}
+];
+function loadArts(){ try{ const r=localStorage.getItem(ART_KEY); if(r) return JSON.parse(r); }catch(e){} return ART_SEED.map(a=>({...a,img:""})); }
+function saveArts(){ try{ localStorage.setItem(ART_KEY, JSON.stringify(articles)); return true; }catch(e){ alert("No se pudo guardar (¿foto muy pesada?). Prueba con otra foto."); return false; } }
+let articles = loadArts();
+let artTag = "Todos";
+const artDate = t => new Date(t).toLocaleDateString("es-CL",{day:"numeric",month:"long",year:"numeric"});
+const sortedArts = () => [...articles].sort((a,b)=>b.created-a.created);
+
+function artCard(a,i){
+  const media = a.img ? `<img src="${a.img}" alt="${esc(a.title)}" loading="lazy">` : `<span aria-hidden="true">${esc(a.emoji||"📰")}</span>`;
+  const tint = TINTS[i%TINTS.length];
+  return `<article class="card artcard reveal" style="--d:${(i%6)*70}ms"><a class="thumb" href="#articulo/${esc(a.id)}" style="--tint:${tint}" tabindex="-1" aria-hidden="true">${media}</a>
+    <div class="body"><span class="arttag">${esc(a.tag)}</span><h3>${esc(a.title)}</h3><p>${esc(a.summary)}</p>
+    <a class="btn sm" href="#articulo/${esc(a.id)}">Leer artículo</a></div></article>`;
+}
+function renderArticles(artId){
+  const list = sortedArts();
+  $("#homeArts").innerHTML = list.slice(0,3).map(artCard).join("");
+  const tags = ["Todos", ...ART_TAGS.filter(t=>list.some(a=>a.tag===t))];
+  $("#artChips").innerHTML = tags.map(t=>`<button class="chip" aria-pressed="${t===artTag}" data-t="${esc(t)}">${esc(t)}</button>`).join("");
+  const shown = list.filter(a=>artTag==="Todos"||a.tag===artTag);
+  $("#artGrid").innerHTML = shown.length ? shown.map(artCard).join("") : `<div class="empty" style="grid-column:1/-1">Pronto habrá artículos nuevos.</div>`;
+  $("#opinionWa").href = waLink("Hola Mundonin, quiero dejar mi opinión sobre un juguete que compré:\n• Producto: \n• Mi opinión: ");
+  const a = artId && articles.find(x=>x.id===artId);
+  $("#artList").hidden = !!a; $("#artView").hidden = !a;
+  if(a) renderArticle(a);
+  reveal();
+}
+function renderArticle(a){
+  const paras = a.body.split(/\n\s*\n/).map(p=>`<p>${esc(p).replace(/\n/g,"<br>")}</p>`).join("");
+  const rel = a.cat ? products.filter(p=>p.stock>0&&p.cat===a.cat).slice(0,4) : [];
+  const url = siteUrl()+"#articulo/"+a.id;
+  $("#artView").innerHTML = `<p><a class="btn alt sm" href="#articulos">← Todos los artículos</a></p>
+    <div class="artbody"><span class="arttag">${esc(a.tag)}</span><h2>${esc(a.title)}</h2>
+    <p class="note">Equipo Mundonin · ${artDate(a.created)}</p>
+    ${a.img?`<img src="${a.img}" alt="${esc(a.title)}">`:""}${paras}
+    <div class="row" style="margin:18px 0"><button class="btn" id="artShare">Compartir artículo</button><a class="btn wa" target="_blank" rel="noopener" href="${waLink(`Hola Mundonin, leí el artículo “${a.title}” y quisiera consultar por un producto.`)}">Preguntar por WhatsApp</a></div></div>
+    ${rel.length?`<div class="artrel"><div class="sec-head"><div><h2>Para ir con este artículo</h2><p>Disponibles hoy en ${esc(a.cat)}.</p></div><a class="btn alt sm" href="#catalogo" id="artCat">Ver todos</a></div><div class="grid">${rel.map(card).join("")}</div></div>`:""}`;
+  $("#artShare").onclick = () => share(`${a.title} · Mundonin`, url);
+  const ac=$("#artCat"); if(ac) ac.onclick = e => { e.preventDefault(); finder={age:"",budget:"",occ:""}; $("#fAge").value="";$("#fBudget").value="";$("#fOcc").value=""; activeCat=a.cat; goTo("catalogo"); };
+  window.scrollTo(0,0);
+}
+$("#artChips").addEventListener("click", e=>{ const b=e.target.closest(".chip"); if(!b) return; artTag=b.dataset.t; renderArticles(null); });
+
+/* ----- Panel: artículos ----- */
+$("#aTag").innerHTML = ART_TAGS.map(t=>`<option>${t}</option>`).join("");
+$("#aCat").innerHTML = `<option value="">Ninguno</option>` + CATS.map(c=>`<option>${c}</option>`).join("");
+let editingArt = null, pendingArtImg = null;
+function renderAdminArts(){
+  $("#artRows").innerHTML = sortedArts().map(a=>`<tr><td>${esc(a.emoji||"")} ${esc(a.title)}</td><td>${esc(a.tag)}</td>
+    <td><button class="btn alt sm" data-a="edit" data-id="${a.id}">Editar</button> <button class="btn alt sm" data-a="del" data-id="${a.id}">Borrar</button></td></tr>`).join("");
+}
+function resetArtForm(){ editingArt=null; pendingArtImg=null; $("#artForm").reset(); $("#aEmoji").value="📰"; $("#aFormTitle").textContent="Agregar artículo"; $("#aCancel").hidden=true; }
+$("#artRows").addEventListener("click", e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  const a=articles.find(x=>x.id===b.dataset.id); if(!a) return;
+  if(b.dataset.a==="del"){ if(!confirm(`¿Borrar "${a.title}"?`)) return; articles=articles.filter(x=>x!==a); saveArts(); renderAdminArts(); return; }
+  editingArt=a.id; pendingArtImg=null; $("#aFormTitle").textContent="Editar artículo";
+  $("#aTitle").value=a.title; $("#aTag").value=a.tag; $("#aSummary").value=a.summary; $("#aCat").value=a.cat||""; $("#aBody").value=a.body; $("#aEmoji").value=a.emoji||"";
+  $("#aCancel").hidden=false; $("#artForm").scrollIntoView({behavior:"smooth"});
+});
+$("#aCancel").onclick = resetArtForm;
+$("#aPhoto").addEventListener("change", e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const img=new Image(), url=URL.createObjectURL(f);
+  img.onload=()=>{ const s=Math.min(1,900/Math.max(img.width,img.height)), c=document.createElement("canvas"); c.width=Math.round(img.width*s); c.height=Math.round(img.height*s); c.getContext("2d").drawImage(img,0,0,c.width,c.height); pendingArtImg=c.toDataURL("image/jpeg",.72); URL.revokeObjectURL(url); };
+  img.src=url;
+});
+$("#artForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  const d={title:$("#aTitle").value.trim(),tag:$("#aTag").value,summary:$("#aSummary").value.trim(),cat:$("#aCat").value,body:$("#aBody").value.trim(),emoji:$("#aEmoji").value.trim()||"📰"};
+  if(editingArt){ const a=articles.find(x=>x.id===editingArt); Object.assign(a,d); if(pendingArtImg) a.img=pendingArtImg; }
+  else articles.push({...d,id:"u"+Date.now(),created:Date.now(),img:pendingArtImg||""});
+  if(saveArts()){ resetArtForm(); renderAdminArts(); toast("Artículo guardado ✅"); }
+});
+$("#aReset").onclick = () => { if(confirm("Esto reemplaza todos los artículos por los de ejemplo. ¿Seguro?")){ articles=ART_SEED.map(a=>({...a,img:""})); saveArts(); renderAdminArts(); } };
+
+/* ===== Club Mundonin ===== */
+const CLUB_PRICE = 4990;     // CLP al mes
+/* Cuando existan, pega aquí los enlaces de la plataforma de cobros (Mercado Pago o Flow):
+   CLUB_PAY_URL: enlace para suscribirse con tarjeta. CLUB_CANCEL_URL: enlace para darse de baja. */
+const CLUB_PAY_URL = "";
+const CLUB_CANCEL_URL = "";
+$("#clubPrice").textContent = clp(CLUB_PRICE);
+$("#clubSampleWa").href = waLink("Hola Mundonin, quiero saber más del Club Mundonin.");
+$("#clubForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  if(CLUB_PAY_URL){ window.open(CLUB_PAY_URL,"_blank","noopener"); return; }
+  const msg=`Hola Mundonin, soy ${$("#cName").value.trim()} (${$("#cMail").value.trim()}). Quiero unirme al Club Mundonin (${clp(CLUB_PRICE)} al mes) para un niño o niña de ${$("#cAge").value}. ¿Me envían el enlace de pago?`;
+  window.open(waLink(msg),"_blank","noopener");
+  toast("Listo, te escribimos por WhatsApp ⭐");
+});
+$("#clubCancel").addEventListener("click", e=>{
+  e.preventDefault();
+  window.open(CLUB_CANCEL_URL || waLink("Hola Mundonin, quiero darme de baja del Club Mundonin."),"_blank","noopener");
+});
+/* Las respuestas marcadas con (*) dependen de la plataforma de cobros y de correos que se use. */
+const CLUB_FAQS = [
+  ["¿Qué trae cada cajita?","Material para imprimir, un juego de mesa (o una parte de uno) para ir coleccionando, un juego manual para hacer en un fin de semana en familia y un cupón de descuento para la juguetería."],
+  ["¿Cómo pago? (*)","Con tarjeta, con un cobro mensual automático a través de una plataforma de pago segura. Mundonin no guarda los datos de tu tarjeta."],
+  ["¿Puedo darme de baja cuando quiera? (*)","Sí, online y sin llamar ni escribir. Dejas de pagar y no se renueva el mes siguiente."],
+  ["¿Cómo me entero de lo que trae cada cajita? (*)","Te enviamos un correo con las novedades antes de cada entrega."],
+  ["¿Cómo uso el cupón?","Cada mes recibes un cupón de descuento para canjear en la juguetería: Feria Modelo de Ovalle, pasillo naranja, local 45."],
+  ["¿Cómo funciona el juego para coleccionar?","Cada mes llega un juego de mesa o una parte nueva de uno. Al juntar las partes, arman el juego completo."],
+  ["¿Necesito algo para usarlo?","Una impresora para el material imprimible. El resto se hace con lápices, hojas, tijeras y pegamento; si el juego manual necesita algo más, te avisamos por correo antes. Si no tienes impresora, escríbenos por WhatsApp y vemos cómo ayudarte."],
+  ["¿Sirve para varios hijos?","Cada cajita es por tramo de edad (3 a 5, 6 a 8 y 9 años o más). Si tienes hijos de edades distintas, cuéntanos y te orientamos."]
+];
+$("#clubFaqList").innerHTML = CLUB_FAQS.map(([q,a])=>`<details><summary>${esc(q.replace(" (*)",""))}</summary><p>${esc(a)}</p></details>`).join("");
+
+renderVideos(); memStart(); reveal();
+route();
+</script>
+</body>
+</html>
