@@ -220,6 +220,26 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
 .qty{display:inline-flex;align-items:center;gap:6px}
 .qty button{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--bg);color:var(--ink);font-weight:800;cursor:pointer}
 .note{font-size:.85rem;color:var(--muted)}
+/* ===== reservas, preventa y vendidos ===== */
+[hidden]{display:none!important}
+.badge.sold{color:var(--muted)} .badge.pre{color:var(--accent)}
+.card.is-sold .thumb>img{filter:grayscale(1);opacity:.6}
+.card.is-sold .thumb>span[aria-hidden]{filter:grayscale(1);opacity:.45}
+.card.is-sold h3,.card.is-sold .price{opacity:.6}
+.eta{font-weight:700;font-size:.85rem;color:var(--accent)}
+.steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.step .em{font-size:2rem;display:block}
+.step h3{font-size:1.1rem;margin:6px 0 2px}
+.step p{margin:0;color:var(--muted);font-size:.92rem}
+dialog{border:0;border-radius:var(--radius);background:var(--card);color:var(--ink);width:calc(100% - 32px);max-width:440px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog form{display:grid;gap:12px}
+dialog h3{font-size:1.4rem}
+.chkgrid{display:flex;flex-wrap:wrap;gap:8px}
+.chk{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font-weight:700;font-size:.9rem;cursor:pointer;margin:0}
+.chk:has(input:checked){background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chk input{accent-color:var(--brand)}
 </style>
 </head>
 <body>
@@ -235,7 +255,7 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
       <ul class="menu" id="menu">
         <li data-v="inicio"><a href="#inicio">Inicio</a></li>
         <li class="dd" data-v="tienda"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">Tienda ▾</button>
-          <ul class="sub"><li><a href="#tienda">Ver toda la tienda</a></li><li><a href="#regalos">🎁 Buscador de regalos</a></li><li><a href="#catalogo">🧸 Catálogo</a></li><li><a href="#avisame">🔔 Avísame cuando llegue</a></li></ul></li>
+          <ul class="sub"><li><a href="#tienda">Ver toda la tienda</a></li><li><a href="#regalos">🎁 Buscador de regalos</a></li><li><a href="#catalogo">🧸 Catálogo</a></li><li><a href="#comocomprar">📦 Cómo comprar</a></li><li><a href="#avisame">🔔 Avísame de novedades</a></li></ul></li>
         <li class="dd" data-v="familia"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">En familia ▾</button>
           <ul class="sub"><li><a href="#familia">🎮 Jugar en familia</a></li><li><a href="#imprimibles">🖨️ Imprimibles gratis</a></li><li><a href="#videos">🎬 Videos</a></li></ul></li>
         <li class="dd" data-v="articulos"><button class="dd-btn" aria-expanded="false" aria-haspopup="true">Consejos y opiniones ▾</button>
@@ -262,11 +282,11 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
   <div class="wrap">
     <div>
       <h1>Juguetes y útiles para <span>todas las edades</span>, en el corazón de la Feria Modelo</h1>
-      <p>Peluches, juegos de mesa, autos, animales, mochilas y artículos de librería. Cada producto es de pocas unidades: si te gustó, resérvalo por WhatsApp antes de que se acabe.</p>
+      <p>Peluches, juegos de mesa, autos, animales, mochilas y artículos de librería. Llegan en pocas unidades y muchos no se reponen: reserva por WhatsApp, desde donde estés, y te lo guardamos <span class="rd"></span> días.</p>
       <div class="cta">
-        <a class="btn" href="#regalos">🎁 Encuentra un regalo</a>
+        <a class="btn" href="#nuevo">🆕 Ver novedades</a>
         <a class="btn wa" id="heroWa" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
-        <a class="btn alt" href="#familia">🎮 Jugar en familia</a>
+        <a class="btn alt" href="#avisame">🔔 Avisarme de novedades</a>
       </div>
     </div>
     <div class="place">
@@ -292,8 +312,24 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
 
 <section id="nuevo">
   <div class="wrap">
-    <div class="sec-head"><div><h2>✨ Recién llegados</h2><p>Lo último que entró al local.</p></div></div>
+    <div class="sec-head"><div><h2>✨ Recién llegados</h2><p>Lo último que llegó. Muchos productos no se reponen.</p></div></div>
     <div class="grid" id="gridNew"></div>
+  </div>
+</section>
+
+<section id="suscribete">
+  <div class="wrap">
+    <div class="panel reveal" style="display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div><h3>🔔 Que no se te pase lo que llega</h3><p class="sub" style="margin:2px 0 0">Los productos son de pocas unidades y no siempre se reponen. Te avisamos primero cuando llega algo nuevo.</p></div>
+      <a class="btn" href="#avisame">Quiero recibir novedades</a>
+    </div>
+  </div>
+</section>
+
+<section id="preventa" style="display:none">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>🛫 Próximamente · preventa</h2><p>Lo que viene en el próximo viaje. Aparta tu unidad con un abono del <span class="dp"></span>% y lo compramos para ti.</p></div></div>
+    <div class="grid" id="gridPre"></div>
   </div>
 </section>
 
@@ -301,6 +337,13 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
   <div class="wrap">
     <div class="sec-head"><div><h2>⏳ Últimas unidades</h2><p>Quedan pocas. Resérvalas y las guardamos para ti.</p></div></div>
     <div class="grid" id="gridLow"></div>
+  </div>
+</section>
+
+<section id="vendidos" style="display:none">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>👋 Se fueron esta semana</h2><p>Se vendieron rápido. Suscríbete y entérate primero de lo que llega.</p></div><a class="btn alt sm" href="#avisame">Avísame de novedades</a></div>
+    <div class="grid" id="gridSold"></div>
   </div>
 </section>
 
@@ -314,6 +357,17 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
 
 <div class="view" data-view="tienda" hidden>
 <div class="viewhead"><div class="wrap"><h1>🛍️ Tienda</h1><p>Encuentra el regalo ideal. Cada producto tiene pocas unidades: reserva por WhatsApp.</p></div></div>
+<section id="comocomprar">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><h2>📦 Cómo comprar</h2><p>Sin cuenta ni carrito: lo coordinamos por WhatsApp.</p></div></div>
+    <div class="steps">
+      <div class="step reveal"><span class="em" aria-hidden="true">1️⃣</span><h3>Elige</h3><p>Mira lo que llegó. Cada producto tiene pocas unidades y muchos no se reponen.</p></div>
+      <div class="step reveal" style="--d:70ms"><span class="em" aria-hidden="true">2️⃣</span><h3>Reserva</h3><p>Toca “Reservar” y te guardamos el producto <span class="rd"></span> días.</p></div>
+      <div class="step reveal" style="--d:140ms"><span class="em" aria-hidden="true">3️⃣</span><h3>Paga y recibe</h3><p>Te enviamos el enlace de pago o los datos de transferencia. Entrega por envío o retiro en el local.</p></div>
+      <div class="step reveal" style="--d:210ms"><span class="em" aria-hidden="true">🛫</span><h3>¿Aún no llega?</h3><p>Es una preventa: aparta tu unidad con un abono del <span class="dp"></span>% y lo compramos en el próximo viaje.</p></div>
+    </div>
+  </div>
+</section>
 <section id="regalos">
   <div class="wrap">
     <div class="finder">
@@ -345,13 +399,22 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
     <div class="grid" id="gridAll"></div>
     <div class="empty" id="emptyAll" hidden>No hay productos con ese filtro por ahora. Déjanos tu pedido más abajo y te avisamos cuando llegue algo parecido.</div>
     <div class="panel reveal" id="avisame" style="margin-top:18px">
-      <h3>🔔 Avísame cuando llegue</h3>
-      <p class="sub">¿No encontraste lo que buscabas o se agotó? Cuéntanos qué quieres y te escribimos apenas entre al local.</p>
-      <form id="notifyForm" class="row">
-        <div style="flex:2;min-width:200px"><label for="nWhat">¿Qué estás buscando?</label><input type="text" id="nWhat" maxlength="80" placeholder="Ej: dinosaurio grande, mochila, ludo" required></div>
-        <div style="flex:1;min-width:140px"><label for="nAge">Edad (opcional)</label><input type="text" id="nAge" maxlength="20" placeholder="Ej: 4 años"></div>
-        <button class="btn" type="submit">Avísame por WhatsApp</button>
+      <h3>🔔 Avísame de novedades</h3>
+      <p class="sub">Muchos productos no se reponen, así que lo mejor es enterarse primero. Elige lo que te interesa y te avisamos apenas llegue algo nuevo.</p>
+      <form id="notifyForm">
+        <p style="margin:0 0 6px;font-weight:700;font-size:.85rem;color:var(--muted)">Me interesa</p>
+        <div class="chkgrid" id="nCats" style="margin-bottom:12px"></div>
+        <div class="row">
+          <div style="flex:1;min-width:150px"><label for="nName">Tu nombre (opcional)</label><input type="text" id="nName" maxlength="40" autocomplete="given-name"></div>
+          <div style="flex:2;min-width:200px"><label for="nWhat">¿Buscas algo en particular? (opcional)</label><input type="text" id="nWhat" maxlength="80" placeholder="Ej: dinosaurio grande, mochila, ludo"></div>
+          <div style="flex:1;min-width:120px"><label for="nAge">Edad (opcional)</label><input type="text" id="nAge" maxlength="20" placeholder="Ej: 4 años"></div>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <button class="btn wa" type="submit">Quiero novedades por WhatsApp</button>
+          <a class="btn alt" id="nChannel" href="#" target="_blank" rel="noopener" hidden>Unirme al canal de WhatsApp</a>
+        </div>
       </form>
+      <div id="brevoBox" style="margin-top:16px"><div class="photo-slot">Aquí irá el formulario de suscripción por correo (Brevo).<br>Se activa pegando su enlace en BREVO_FORM_URL.</div></div>
     </div>
   </div>
 </section>
@@ -572,7 +635,7 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
 <!-- Panel interno -->
 <div id="admin">
   <div class="wrap" style="padding-top:24px;padding-bottom:40px">
-    <div class="sec-head"><div><h2>Panel de Mundonin</h2><p>Carga productos desde el celular. Lo que llega a 0 se oculta solo.</p></div>
+    <div class="sec-head"><div><h2>Panel de Mundonin</h2><p>Carga productos desde el celular. Lo que llega a 0 queda como “Vendido” unos días y luego se oculta solo.</p></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn alt sm" id="btnExit">Salir del panel</button></div></div>
 
     <div class="admin-box">
@@ -581,7 +644,9 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
         <div class="span2"><label for="pName">Nombre</label><input type="text" id="pName" required maxlength="60"></div>
         <div><label for="pCat">Categoría</label><select id="pCat"></select></div>
         <div><label for="pPrice">Precio (CLP)</label><input type="number" id="pPrice" min="0" step="100" required inputmode="numeric"></div>
-        <div><label for="pStock">Cantidad</label><input type="number" id="pStock" min="0" value="5" required inputmode="numeric"></div>
+        <div><label for="pStock">Cantidad (o cupos)</label><input type="number" id="pStock" min="0" value="5" required inputmode="numeric"></div>
+        <div><label for="pStatus">Tipo</label><select id="pStatus"><option value="stock">En stock</option><option value="preorder">Preventa</option></select></div>
+        <div><label for="pEta">Llegada (solo preventa)</label><input type="text" id="pEta" maxlength="40" placeholder="Ej: enero, fines de marzo"></div>
         <div><label for="pAge">Edad desde → hasta</label>
           <div style="display:flex;gap:6px"><input type="number" id="pAgeMin" min="0" max="15" value="3" aria-label="Edad mínima"><input type="number" id="pAgeMax" min="0" max="99" value="6" aria-label="Edad máxima"></div></div>
         <div class="span2"><label for="pOcc">Ocasiones (separadas por coma)</label><input type="text" id="pOcc" placeholder="Cumpleaños, Navidad, Detalle"></div>
@@ -626,6 +691,17 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
   <p><button class="btn alt sm" id="siteShare">📲 Comparte Mundonin con tu familia</button></p>
   © Mundonin · Feria Modelo de Ovalle, pasillo naranja, local 45.
 </div></footer>
+<dialog id="resDlg" aria-labelledby="resTitle">
+  <form id="resForm">
+    <h3 id="resTitle">Reservar</h3>
+    <p id="resInfo" style="margin:0"></p>
+    <div><label for="rName">Tu nombre</label><input type="text" id="rName" required maxlength="40" autocomplete="name"></div>
+    <div><label for="rCity">Comuna o ciudad</label><input type="text" id="rCity" required maxlength="40" autocomplete="address-level2"></div>
+    <div><label for="rMode">¿Cómo lo recibes?</label><select id="rMode"><option>Envío a mi domicilio</option><option>Retiro en el local (Feria Modelo, Ovalle)</option></select></div>
+    <p id="resPolicy" class="note" style="margin:0"></p>
+    <div class="row"><button class="btn wa" type="submit">Continuar por WhatsApp</button><button class="btn alt" type="button" id="resCancel">Cancelar</button></div>
+  </form>
+</dialog>
 <div class="toast" id="toast" role="status"></div>
 <a class="btn wa fab" id="fabWa" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬 WhatsApp</a>
 
@@ -633,7 +709,14 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
 /* ===== Configuración (editar aquí) ===== */
 const WA_NUMBER = "56952890171";
 const ADMIN_PIN = "mundonin";              // prototipo; la versión final usará acceso real
-const STORE_KEY = "mundonin.products.v1";
+const STORE_KEY = "mundonin.products.v2";
+/* Políticas (confirmar con la dueña antes de publicar) */
+const RESERVE_DAYS = 5;        // días que se guarda una reserva sin pago
+const DEPOSIT_PCT = 30;        // % de abono para apartar una preventa
+const SOLD_VISIBLE_DAYS = 7;   // días que un producto vendido sigue visible como "Vendido"
+/* Suscripciones */
+const BREVO_FORM_URL = "";     // enlace del formulario de Brevo (se muestra en un iframe)
+const WA_CHANNEL_URL = "";     // enlace al canal de WhatsApp, si se crea uno
 const CATS = ["Peluches","Animales","Juegos de mesa","Autos y carritos","Muñecas","Mochilas","Librería"];
 const TINTS = ["#f3e2c9","#dcebd8","#f6d9cc","#e6e0cf","#f9ebb8","#d9e6e3"];
 
@@ -654,6 +737,9 @@ const SEED = [
  {name:"Set de lápices de colores x24",cat:"Librería",price:2990,stock:8,ageMin:4,ageMax:14,occ:["Regreso a clases","Detalle"],emoji:"🖍️",t:9},
  {name:"Peluche unicornio",cat:"Peluches",price:8990,stock:2,ageMin:2,ageMax:10,occ:["Cumpleaños","Navidad","Detalle"],emoji:"🦄",t:0},
  {name:"Sonajero y mordedor bebé",cat:"Animales",price:3490,stock:7,ageMin:0,ageMax:1,occ:["Detalle","Cumpleaños"],emoji:"🐤",t:6},
+ {name:"Castillo de princesas con luces",cat:"Muñecas",price:24990,stock:6,status:"preorder",eta:"enero",ageMin:3,ageMax:8,occ:["Cumpleaños"],emoji:"🏰",t:0},
+ {name:"Pista de autos con rampa",cat:"Autos y carritos",price:12990,stock:0,soldAt:now-2*day,ageMin:3,ageMax:8,occ:["Cumpleaños","Navidad"],emoji:"🏁",t:9},
+ {name:"Peluche gato gigante",cat:"Peluches",price:14990,stock:0,soldAt:now-5*day,ageMin:0,ageMax:10,occ:["Cumpleaños","Detalle"],emoji:"🐱",t:10},
 ].map((p,i)=>({...p,id:"s"+i,created:now-p.t*day,img:""}));
 
 /* ===== Estado ===== */
@@ -675,23 +761,34 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">"
 const waLink = (txt) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(txt)}`;
 
 /* ===== Tarjetas ===== */
+const isPre  = p => p.status==="preorder";
+const isSold = p => p.stock<=0;
+const soldVisible = p => isSold(p) && (Date.now()-(p.soldAt||0)) < SOLD_VISIBLE_DAYS*day;
+const depositOf = p => Math.round(p.price*DEPOSIT_PCT/100/10)*10;
 function badge(p){
+  if(isSold(p)) return `<span class="badge sold">${isPre(p)?"Cupos agotados":"Vendido"}</span>`;
+  if(isPre(p)) return `<span class="badge pre">Preventa</span>`;
   if(p.stock<=2) return `<span class="badge low">${p.stock===1?"Queda 1":"Quedan "+p.stock}</span>`;
   if(p.stock<=4) return `<span class="badge mid">Quedan ${p.stock}</span>`;
   return `<span class="badge ok">Disponible</span>`;
 }
 function ageText(p){ return p.ageMax>=99 ? `Desde ${p.ageMin} años` : (p.ageMin===p.ageMax? `${p.ageMin} años` : `${p.ageMin} a ${p.ageMax} años`); }
 function card(p, i){
+  const sold = isSold(p), pre = isPre(p);
   const tint = TINTS[(p.id.length+i)%TINTS.length];
   const media = p.img ? `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">` : `<span aria-hidden="true">${esc(p.emoji||"🎁")}</span>`;
-  const msg = `Hola Mundonin, quiero reservar: ${p.name} (${clp(p.price)}). ¿Sigue disponible?`;
   const liked = wish.includes(p.id);
-  return `<article class="card reveal" style="--d:${(i%8)*60}ms"><div class="thumb" style="--tint:${tint}">${media}${badge(p)}<button class="heart" data-id="${p.id}" aria-pressed="${liked}" aria-label="Guardar en mi lista de deseos">${liked?"♥":"♡"}</button></div>
+  const heart = sold ? "" : `<button class="heart" data-id="${p.id}" aria-pressed="${liked}" aria-label="Guardar en mi lista de deseos">${liked?"♥":"♡"}</button>`;
+  const cta = sold ? `<a class="btn sm alt" href="#avisame">Avísame de novedades</a>`
+    : `<button class="btn sm wa" type="button" data-reserve="${p.id}">${pre?"Apartar con abono":"Reservar"}</button>`;
+  const eta = (pre && !sold) ? `<div class="eta">🛫 ${p.eta?"Llegada estimada: "+esc(p.eta):"Próximo viaje"} · ${p.stock} ${p.stock===1?"cupo":"cupos"}</div><div class="meta">Abono para apartar: ${clp(depositOf(p))}</div>` : "";
+  return `<article class="card reveal${sold?" is-sold":""}" style="--d:${(i%8)*60}ms"><div class="thumb" style="--tint:${tint}">${media}${badge(p)}${heart}</div>
     <div class="body"><h3>${esc(p.name)}</h3><div class="meta">${esc(p.cat)} · ${ageText(p)}</div>
-    <div class="price">${clp(p.price)}</div>
-    <a class="btn sm wa" target="_blank" rel="noopener" href="${waLink(msg)}">Reservar por WhatsApp</a></div></article>`;
+    <div class="price">${clp(p.price)}</div>${eta}${cta}</div></article>`;
 }
-const available = () => products.filter(p=>p.stock>0);
+const inStock = () => products.filter(p=>!isPre(p) && p.stock>0);
+const preorders = () => products.filter(p=>isPre(p) && p.stock>0);
+const soldRecent = () => products.filter(soldVisible).sort((a,b)=>(b.soldAt||0)-(a.soldAt||0));
 
 function matchFinder(p){
   const {age,budget,occ} = finder;
@@ -702,13 +799,17 @@ function matchFinder(p){
 }
 
 function render(){
-  const av = available();
+  const av = inStock(), pre = preorders(), sold = soldRecent();
   const fillGrid = (sel, arr, emptyMsg) => { $(sel).innerHTML = arr.length ? arr.map(card).join("") : `<div class="empty" style="grid-column:1/-1">${emptyMsg}</div>`; };
   fillGrid("#gridNew", [...av].sort((a,b)=>b.created-a.created).slice(0,4), "Pronto habrá novedades.");
   const low = av.filter(p=>p.stock<=2);
   fillGrid("#gridLow", low, "Por ahora no hay productos con pocas unidades.");
   $("#ultimas").style.display = low.length ? "" : "none";
-  const list = av.filter(p=>(activeCat==="Todas"||p.cat===activeCat) && matchFinder(p));
+  fillGrid("#gridPre", pre, "");
+  $("#preventa").style.display = pre.length ? "" : "none";
+  fillGrid("#gridSold", sold, "");
+  $("#vendidos").style.display = sold.length ? "" : "none";
+  const list = [...av,...pre].filter(p=>(activeCat==="Todas"||p.cat===activeCat) && matchFinder(p));
   $("#gridAll").innerHTML = list.map(card).join("");
   $("#emptyAll").hidden = list.length>0;
   $("#countTxt").textContent = `${list.length} ${list.length===1?"producto":"productos"} disponibles`;
@@ -724,6 +825,36 @@ $("#finderForm").addEventListener("submit", e=>{
   goTo("catalogo");
 });
 
+/* ===== Reservar / apartar ===== */
+let resProd = null;
+function openReserve(p){
+  resProd = p; const pre = isPre(p);
+  $("#resTitle").textContent = pre ? "Apartar con abono" : "Reservar";
+  $("#resInfo").innerHTML = `<b>${esc(p.name)}</b> · ${clp(p.price)}`;
+  $("#resPolicy").textContent = pre
+    ? `Para apartar tu unidad pagas un abono de ${clp(depositOf(p))} (${DEPOSIT_PCT}%). La compramos en el próximo viaje${p.eta?`. Llegada estimada: ${p.eta}`:""}. Si no la conseguimos, te devolvemos el abono.`
+    : `Te guardamos el producto ${RESERVE_DAYS} días. Si en ese plazo no se concreta el pago, se libera para otra persona.`;
+  $("#resDlg").showModal();
+}
+$("#resCancel").onclick = () => $("#resDlg").close();
+$("#resForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  const p = resProd; if(!p) return; const pre = isPre(p);
+  const msg = [
+    `Hola Mundonin, quiero ${pre?"APARTAR CON ABONO":"RESERVAR"} este producto:`,
+    `• Producto: ${p.name}`,
+    `• Precio: ${clp(p.price)}`,
+    pre ? `• Abono (${DEPOSIT_PCT}%): ${clp(depositOf(p))}` : "",
+    `• Nombre: ${$("#rName").value.trim()}`,
+    `• Comuna o ciudad: ${$("#rCity").value.trim()}`,
+    `• Recepción: ${$("#rMode").value}`
+  ].filter(Boolean).join("\n");
+  $("#resDlg").close();
+  window.open(waLink(msg),"_blank","noopener");
+  toast("Listo, seguimos por WhatsApp 🎁");
+  confetti(innerWidth/2, innerHeight/2);
+});
+
 /* ===== WhatsApp general ===== */
 const hello = waLink("Hola Mundonin, quisiera consultar por un producto.");
 ["#heroWa","#localWa","#fabWa"].forEach(s=>$(s).href = hello);
@@ -731,7 +862,7 @@ const hello = waLink("Hola Mundonin, quisiera consultar por un producto.");
 /* ===== Panel interno ===== */
 let editing = null, pendingImg = null;
 const VIEWS = ["inicio","tienda","familia","consejos","articulos","club","nosotros"];
-const SEC = {nuevo:"inicio",ultimas:"inicio",ultimosArt:"inicio",regalos:"tienda",etapas:"tienda",catalogo:"tienda",lista:"tienda",avisame:"tienda",videos:"familia",imprimibles:"familia",preguntas:"nosotros",historia:"nosotros",local:"nosotros",unirme:"club",clubPack:"club",clubBeneficios:"club",clubFaq:"club"};
+const SEC = {nuevo:"inicio",suscribete:"inicio",preventa:"inicio",vendidos:"inicio",comocomprar:"tienda",ultimas:"inicio",ultimosArt:"inicio",regalos:"tienda",etapas:"tienda",catalogo:"tienda",lista:"tienda",avisame:"tienda",videos:"familia",imprimibles:"familia",preguntas:"nosotros",historia:"nosotros",local:"nosotros",unirme:"club",clubPack:"club",clubBeneficios:"club",clubFaq:"club"};
 function goTo(id){ if(location.hash==="#"+id) route(); else location.hash=id; }
 function closeMenus(keepBurger){
   document.querySelectorAll("#menu .dd.open").forEach(li=>{ li.classList.remove("open"); li.firstElementChild.setAttribute("aria-expanded","false"); });
@@ -778,17 +909,18 @@ $("#pCat").innerHTML = CATS.map(c=>`<option>${c}</option>`).join("");
 
 function renderAdmin(){
   const rows = [...products].sort((a,b)=>b.created-a.created).map(p=>`
-    <tr><td>${esc(p.emoji||"")} ${esc(p.name)}<div class="note">${esc(p.cat)}${p.stock===0?" · AGOTADO (oculto)":""}</div></td>
+    <tr><td>${esc(p.emoji||"")} ${esc(p.name)}<div class="note">${esc(p.cat)}${isPre(p)?" · PREVENTA":""}${p.stock===0?" · VENDIDO":""}</div></td>
     <td>${clp(p.price)}</td>
     <td><span class="qty"><button data-a="dec" data-id="${p.id}" aria-label="Restar">−</button><b>${p.stock}</b><button data-a="inc" data-id="${p.id}" aria-label="Sumar">+</button></span></td>
-    <td><button class="btn alt sm" data-a="edit" data-id="${p.id}">Editar</button> <button class="btn alt sm" data-a="del" data-id="${p.id}">Borrar</button></td></tr>`).join("");
+    <td><button class="btn alt sm" data-a="sold" data-id="${p.id}">Vendido</button> <button class="btn alt sm" data-a="edit" data-id="${p.id}">Editar</button> <button class="btn alt sm" data-a="del" data-id="${p.id}">Borrar</button></td></tr>`).join("");
   $("#adminRows").innerHTML = rows;
 }
 $("#adminRows").addEventListener("click", e=>{
   const b = e.target.closest("button"); if(!b) return;
   const p = products.find(x=>x.id===b.dataset.id); if(!p) return;
-  if(b.dataset.a==="inc") p.stock++;
-  if(b.dataset.a==="dec") p.stock = Math.max(0,p.stock-1);
+  if(b.dataset.a==="inc"){ p.stock++; p.soldAt = null; }
+  if(b.dataset.a==="dec"){ p.stock = Math.max(0,p.stock-1); if(p.stock===0) p.soldAt = Date.now(); }
+  if(b.dataset.a==="sold"){ p.stock = 0; p.soldAt = Date.now(); }
   if(b.dataset.a==="del"){ if(!confirm(`¿Borrar "${p.name}"?`)) return; products = products.filter(x=>x!==p); }
   if(b.dataset.a==="edit"){ startEdit(p); return; }
   save(); renderAdmin();
@@ -798,6 +930,7 @@ function startEdit(p){
   $("#formTitle").textContent = "Editar producto";
   $("#pName").value=p.name; $("#pCat").value=p.cat; $("#pPrice").value=p.price; $("#pStock").value=p.stock;
   $("#pAgeMin").value=p.ageMin; $("#pAgeMax").value=p.ageMax; $("#pOcc").value=(p.occ||[]).join(", "); $("#pEmoji").value=p.emoji||"";
+  $("#pStatus").value=p.status||"stock"; $("#pEta").value=p.eta||"";
   $("#btnCancel").hidden=false; window.scrollTo({top:0,behavior:"smooth"});
 }
 function resetForm(){ editing=null; pendingImg=null; $("#prodForm").reset(); $("#pStock").value=5; $("#pAgeMin").value=3; $("#pAgeMax").value=6; $("#pEmoji").value="🧸"; $("#formTitle").textContent="Agregar producto"; $("#btnCancel").hidden=true; }
@@ -819,12 +952,14 @@ $("#prodForm").addEventListener("submit", e=>{
   const data = {
     name:$("#pName").value.trim(), cat:$("#pCat").value, price:+$("#pPrice").value, stock:Math.max(0,+$("#pStock").value),
     ageMin:+$("#pAgeMin").value, ageMax:+$("#pAgeMax").value,
-    occ:$("#pOcc").value.split(",").map(s=>s.trim()).filter(Boolean), emoji:$("#pEmoji").value.trim()||"🎁"
+    occ:$("#pOcc").value.split(",").map(s=>s.trim()).filter(Boolean), emoji:$("#pEmoji").value.trim()||"🎁",
+    status:$("#pStatus").value, eta:$("#pEta").value.trim()
   };
   if(editing){
     const p = products.find(x=>x.id===editing); Object.assign(p,data); if(pendingImg) p.img=pendingImg;
+    if(p.stock===0){ if(!p.soldAt) p.soldAt=Date.now(); } else p.soldAt=null;
   } else {
-    products.push({...data, id:"p"+Date.now(), created:Date.now(), img:pendingImg||""});
+    products.push({...data, id:"p"+Date.now(), created:Date.now(), img:pendingImg||"", soldAt:data.stock===0?Date.now():null});
   }
   if(save()){ resetForm(); renderAdmin(); }
 });
@@ -868,7 +1003,7 @@ function afterRender(n){ countUp(n); renderWish(); reveal(); }
 
 /* cinta superior */
 (function(){
-  const msgs=["🧸 Pocas unidades de cada producto","📲 Reserva por WhatsApp","📍 Feria Modelo de Ovalle · pasillo naranja · local 45","🎁 Regalo envuelto en el local","🕘 Lun, mié, vie y sáb de 9:30 a 17:00"];
+  const msgs=["🧸 Pocas unidades de cada producto","🆕 Novedades que no siempre se reponen",`📲 Reserva por WhatsApp: te lo guardamos ${RESERVE_DAYS} días`,"📍 Feria Modelo de Ovalle · pasillo naranja · local 45","🎁 Regalo envuelto en el local","🕘 Lun, mié, vie y sáb de 9:30 a 17:00"];
   const html=msgs.map(m=>`<span>${m}</span>`).join("");
   $("#trackTicker").innerHTML = html+html;
 })();
@@ -954,8 +1089,8 @@ document.addEventListener("click", e=>{
   }
   const rm = e.target.closest("[data-rm]");
   if(rm){ wish = wish.filter(x=>x!==rm.dataset.rm); saveWish(); render(); return; }
-  const wa = e.target.closest(".card a.wa");
-  if(wa){ confetti(e.clientX, e.clientY); }
+  const rb = e.target.closest("[data-reserve]");
+  if(rb){ const p = products.find(x=>x.id===rb.dataset.reserve); if(p) openReserve(p); }
 });
 $("#wishShare").onclick = () => share(wishText());
 $("#siteShare").onclick = () => share("Mira Mundonin, la juguetería de la Feria Modelo de Ovalle 🧸");
@@ -1034,22 +1169,36 @@ const chal = CHALLENGES[Math.floor(Date.now()/(7*864e5)) % CHALLENGES.length];
 $("#challengeText").textContent = chal;
 $("#challengeShare").onclick = () => share("Reto familiar de la semana de Mundonin ⭐: " + chal);
 
-/* ----- Avísame cuando llegue ----- */
+/* ----- Avísame de novedades ----- */
+/* Correo: se arma con Brevo (BREVO_FORM_URL). WhatsApp: el mensaje empieza siempre con
+   "Hola Mundonin, quiero recibir novedades", que sirve de palabra clave para un chatbot. */
+$("#nCats").innerHTML = CATS.map(c=>`<label class="chk"><input type="checkbox" value="${esc(c)}"> ${esc(c)}</label>`).join("");
+if(WA_CHANNEL_URL){ const ch=$("#nChannel"); ch.href=WA_CHANNEL_URL; ch.hidden=false; }
+if(BREVO_FORM_URL){ $("#brevoBox").innerHTML = `<iframe src="${esc(BREVO_FORM_URL)}" title="Suscripción por correo" loading="lazy" style="width:100%;height:440px;border:0"></iframe>`; }
 $("#notifyForm").addEventListener("submit", e=>{
   e.preventDefault();
-  const what=$("#nWhat").value.trim(), age=$("#nAge").value.trim();
-  if(!what) return;
-  window.open(waLink(`Hola Mundonin, ¿me pueden avisar cuando llegue: ${what}${age?` (para ${age})`:""}?`),"_blank","noopener");
+  const cats=[...document.querySelectorAll("#nCats input:checked")].map(i=>i.value);
+  const what=$("#nWhat").value.trim(), age=$("#nAge").value.trim(), name=$("#nName").value.trim();
+  if(!cats.length && !what){ toast("Elige una categoría o cuéntanos qué buscas"); return; }
+  const msg = [
+    `Hola Mundonin, quiero recibir novedades${name?` (soy ${name})`:""}.`,
+    cats.length ? `Me interesa: ${cats.join(", ")}` : "",
+    what ? `Busco: ${what}${age?` (para ${age})`:""}` : (age ? `Edad: ${age}` : "")
+  ].filter(Boolean).join("\n");
+  window.open(waLink(msg),"_blank","noopener");
   toast("Listo, te avisamos por WhatsApp 🔔"); e.target.reset();
 });
 
 /* ----- Preguntas frecuentes ----- */
 /* Las respuestas marcadas con (*) conviene confirmarlas con la dueña y ajustarlas. */
 const FAQS = [
-  ["¿Dónde están y cuándo atienden?","Estamos en la Feria Modelo de Ovalle, pasillo naranja, local 45. Atendemos lunes, miércoles, viernes y sábado, de 9:30 a 17:00."],
-  ["¿Cómo reservo un producto?","Toca “Reservar por WhatsApp” en el producto que te guste. Te confirmamos que siga disponible y coordinamos el retiro en el local."],
-  ["¿Lo que veo en la página está disponible?","Tenemos pocas unidades de cada producto y se venden rápido. Por eso siempre confirmamos la disponibilidad por WhatsApp antes de cerrar la reserva."],
-  ["¿Y si el producto que quiero está agotado?","Usa “Avísame cuando llegue” en el catálogo y te escribimos apenas entre algo parecido."],
+  ["¿Dónde están y cuándo atienden?","Estamos en la Feria Modelo de Ovalle, pasillo naranja, local 45. El local atiende lunes, miércoles, viernes y sábado, de 9:30 a 17:00."],
+  ["¿Cómo reservo un producto?",`Toca “Reservar” en el producto, déjanos tu nombre y tu comuna, y seguimos por WhatsApp. Confirmamos que esté disponible y te lo guardamos ${RESERVE_DAYS} días.`],
+  ["¿Cuánto tiempo guardan mi reserva? (*)",`${RESERVE_DAYS} días. Si en ese plazo no se concreta el pago, el producto se libera para otra persona. Si necesitas más tiempo, avísanos por WhatsApp.`],
+  ["¿Los productos se vuelven a reponer?","Casi nunca. Trabajamos con novedades que llegan en pocas unidades, y muchos modelos no vuelven. Si te gustó algo, no lo dejes para después."],
+  ["¿Qué es la preventa? (*)",`Son productos que vimos con nuestros proveedores y que compraremos en el próximo viaje. Apartas tu unidad con un abono del ${DEPOSIT_PCT}%. Si no logramos conseguirla, te devolvemos el abono.`],
+  ["¿Lo que veo en la página está disponible?","Tenemos pocas unidades y se venden rápido. Lo vendido aparece como “Vendido” unos días, y siempre confirmamos la disponibilidad por WhatsApp antes de cerrar la reserva."],
+  ["¿Y si el producto que quiero ya se vendió?","Entra a “Avísame de novedades”, elige las categorías que te interesan y te escribimos apenas llegue algo nuevo."],
   ["¿Hacen envíos? (*)","Escríbenos por WhatsApp con tu comuna y te confirmamos si llegamos a tu zona y las opciones disponibles."],
   ["¿Qué medios de pago tienen? (*)","Consúltanos por WhatsApp los medios de pago disponibles al momento de reservar."],
   ["¿Cómo sé qué juguete es adecuado para la edad?","Usa el buscador de regalos o las etapas de “Jugar según la edad”. Revisa también la sección de consejos y la edad recomendada del envase."],
@@ -1086,9 +1235,9 @@ const ART_SEED = [
  {id:"a8",title:"Abuelos: cómo regalar a los nietos y acertar siempre",tag:"Opinión",cat:"Autos y carritos",emoji:"👵",created:dAgo(3),
   summary:"Cinco ideas para que el regalo de los abuelos sea el que más se use, y no el que se guarda.",
   body:"Los abuelos regalan con el corazón, y a veces el regalo llega demasiado grande, demasiado complicado o repetido. Después de ver a muchas familias elegir, esto es lo que recomendamos.\n\n1. Pregunta primero a los papás. En un mensaje te dicen qué tienen y qué falta.\n2. Elige algo para jugar juntos. Un juego de mesa o un set de autos que se pueda jugar con el nieto vale más que cualquier cosa que se use solo.\n3. Piensa en el espacio. En muchas casas no cabe un juguete enorme. Es mejor algo mediano y bien hecho.\n4. Revisa la edad. Lo que dice el envase es la mejor guía.\n5. Acompaña el regalo con un rato. Una tarde de juego contigo es lo que el nieto va a recordar.\n\nNuestra opinión: el mejor regalo de abuelos no es el más caro, es el que se juega esa misma tarde. Escríbenos con la edad del nieto y te recomendamos algo concreto."},
- {id:"a9",title:"Por qué conviene comprar juguetes en el local de la feria",tag:"Opinión",cat:"Peluches",emoji:"📍",created:dAgo(4),
-  summary:"Ver, tocar y comparar tamaños: razones para pasar por el local antes de decidir.",
-  body:"Las fotos ayudan, pero un juguete se entiende mejor en la mano. Estas son las razones por las que, para un regalo, vale la pena pasar por el local.\n\nPuedes ver el tamaño real. Un peluche puede parecer enorme en una foto y ser pequeño en persona, o al revés.\n\nPuedes comparar. Tener varias opciones a la vista ayuda a decidir en minutos.\n\nTe llevas el regalo ese mismo día. Sin esperas ni despachos, y puedes revisarlo antes de pagar.\n\nTe atiende una persona. Cuéntanos la edad y el presupuesto, y te sugerimos opciones concretas.\n\nY apoyas a un negocio familiar de Ovalle. Mundonin lleva años en la feria y sigue gracias a las familias que vuelven.\n\nEstamos en la Feria Modelo de Ovalle, pasillo naranja, local 45, de lunes, miércoles, viernes y sábado de 9:30 a 17:00. Si prefieres adelantarte, reserva por WhatsApp y te dejamos el producto guardado."},
+ {id:"a9",title:"Cómo comprar en Mundonin sin ir al local",tag:"Guía",cat:"Peluches",emoji:"📦",created:dAgo(4),
+  summary:"Elige en la web, reserva por WhatsApp y nosotros te guardamos el producto. Así funciona, paso a paso.",
+  body:"No hace falta pasar por la feria para comprar en Mundonin. Así funciona.\n\n1. Elige. En la portada están las novedades, y en la tienda todo lo disponible. Cada producto tiene pocas unidades, y muchos no se reponen.\n\n2. Reserva. Toca “Reservar”, déjanos tu nombre y tu comuna, y seguimos por WhatsApp. Confirmamos que siga disponible y te guardamos el producto por unos días.\n\n3. Paga y recibe. Te enviamos el enlace de pago o los datos de transferencia, y coordinamos la entrega: envío a tu domicilio o retiro en el local.\n\n¿Aún no llega? Algunos productos aparecen como preventa: son los que vimos con nuestros proveedores y compraremos en el próximo viaje. Apartas tu unidad con un abono, y si no la conseguimos, te lo devolvemos.\n\nY si algo se vendió, no te preocupes: en “Avísame de novedades” eliges las categorías que te interesan y te escribimos apenas llegue algo nuevo."},
  {id:"a10",title:"Arma tu pack de regalo: combinaciones que siempre funcionan",tag:"Guía",cat:"Librería",emoji:"🎁",created:dAgo(7),
   summary:"Dos o tres productos pequeños que juntos se sienten como un regalo completo.",
   body:"A veces un solo regalo se siente corto, y uno más grande se sale del presupuesto. La solución que más resulta es combinar dos o tres cosas pequeñas.\n\nPack artista: set de lápices de colores, un estuche y un cuaderno. Ideal desde los 4 años y muy útil antes del regreso a clases.\n\nPack cuentos: un peluche y un libro o cuaderno para dibujar. Un regalo que invita a inventar historias.\n\nPack aventura: un set de animales y una mochila pequeña para llevarlos de paseo.\n\nPack familia: un juego de mesa clásico y algo rico para comer mientras juegan.\n\nCómo armarlo: elige un tema, junta dos o tres cosas que combinen y entrégalas juntas. Se ve más cuidado y rinde más que un solo regalo del mismo costo.\n\nEn Mundonin puedes ver las opciones en el local y reservarlas por WhatsApp. Cuéntanos cuánto quieres gastar y la edad, y te proponemos un pack a tu medida."}
@@ -1201,6 +1350,8 @@ const CLUB_FAQS = [
 ];
 $("#clubFaqList").innerHTML = CLUB_FAQS.map(([q,a])=>`<details><summary>${esc(q.replace(" (*)",""))}</summary><p>${esc(a)}</p></details>`).join("");
 
+document.querySelectorAll(".rd").forEach(el=>el.textContent=RESERVE_DAYS);
+document.querySelectorAll(".dp").forEach(el=>el.textContent=DEPOSIT_PCT);
 renderVideos(); memStart(); reveal();
 route();
 </script>
