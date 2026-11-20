@@ -16,3 +16,9 @@ Para publicar, sube la carpeta `docs/` (GitHub Pages con "main /docs", Netlify o
 - `src/assets/`: estilos y scripts. `og.png` es la imagen que se ve al compartir.
 
 Cuando el catálogo esté listo: pega su enlace en `catalogUrl`, ejecuta `node build.mjs` y sube `docs/`.
+
+## Cloudflare Pages
+- Proyecto conectado a este repositorio, rama `main`, directorio de salida `docs`. Comando de build: vacío (o `node build.mjs`).
+- `build.mjs` genera `docs/_headers` (seguridad y caché) y `docs/_redirects` (direcciones cortas y `/wa`, enlace directo a WhatsApp para redes sociales).
+- La redirección de `www.mundonin.cl` a `mundonin.cl` se crea en el panel (Rules > Redirect Rules), porque `_redirects` no distingue dominios.
+- Analítica: actívala con un clic en el proyecto de Pages, o pega el token en `cfAnalyticsToken` (`src/data/site.mjs`).

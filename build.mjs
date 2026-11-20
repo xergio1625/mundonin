@@ -20,6 +20,7 @@ fs.mkdirSync(path.join(OUT, "assets"), { recursive: true });
 /* archivos estáticos con versión en la URL (se recargan solo cuando cambian) */
 for (const f of fs.readdirSync(path.join(SRC, "assets"))) {
   const buf = fs.readFileSync(path.join(SRC, "assets", f));
+  if (f === "og.png") { fs.writeFileSync(path.join(OUT, "og.png"), buf); continue; }   // sin versión: va en la raíz
   ASSET[f] = crypto.createHash("md5").update(buf).digest("hex").slice(0, 8);
   fs.writeFileSync(path.join(OUT, "assets", f), buf);
 }
@@ -38,6 +39,38 @@ fs.writeFileSync(path.join(OUT, "favicon.svg"),
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#b5532b"/><text x="50" y="68" font-size="58" text-anchor="middle">🧸</text></svg>\n`);
 fs.writeFileSync(path.join(OUT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
 fs.writeFileSync(path.join(OUT, ".nojekyll"), "");
+
+/* Configuración de Cloudflare Pages (_headers y _redirects se leen desde la raíz de docs/) */
+fs.writeFileSync(path.join(OUT, "_headers"), `# Cabeceras de seguridad para todo el sitio
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+# Los estilos y scripts llevan versión en la URL (?v=...), así que pueden guardarse un año
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Archivos sin versión: un día
+/og.png
+  Cache-Control: public, max-age=86400
+/favicon.svg
+  Cache-Control: public, max-age=86400
+
+# No indexar la dirección técnica *.pages.dev (Google debe ver solo ${SITE.url.replace("https://", "")})
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+`);
+fs.writeFileSync(path.join(OUT, "_redirects"), `# Direcciones cortas y antiguas
+/tienda  /catalogo/  301
+/familia  /jugar-en-familia/  301
+/contacto  /como-llegar/  301
+/imprimibles.html  /imprimibles/  301
+
+# Enlace corto para redes sociales: abre WhatsApp
+/wa  https://wa.me/${SITE.waNumber}?text=${encodeURIComponent("Hola Mundonin, quisiera consultar por un producto.")}  302
+`);
 fs.writeFileSync(path.join(OUT, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   urls.map(u => `  <url><loc>${SITE.url}${u.path}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ""}</url>`).join("\n") + `\n</urlset>\n`);

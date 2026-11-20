@@ -19,6 +19,10 @@ export const SITE = {
   hoursShort: "Lun, mié, vie y sáb de 9:30 a 17:00",
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Feria+Modelo+de+Ovalle",
 
+  /* Cloudflare Web Analytics: si activas la analítica con un clic en el proyecto de Pages, déjalo vacío.
+     Si prefieres instalarla a mano, pega aquí el token del sitio. */
+  cfAnalyticsToken: "",
+
   /* Suscripciones (opcionales) */
   brevoFormUrl: "",      // enlace del formulario de Brevo
   waChannelUrl: "",      // enlace al canal de WhatsApp

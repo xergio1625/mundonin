@@ -124,10 +124,10 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robo
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
-${HAS_OG ? `<meta property="og:image" content="${SITE.url}/assets/og.png">
+${HAS_OG ? `<meta property="og:image" content="${SITE.url}/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:image" content="${SITE.url}/assets/og.png">` : ""}
+<meta name="twitter:image" content="${SITE.url}/og.png">` : ""}
 <meta name="twitter:card" content="${HAS_OG ? "summary_large_image" : "summary"}">
 <meta name="theme-color" content="#b5532b">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -151,6 +151,7 @@ ${footer()}
 <script>window.MN=${JSON.stringify(MN)}</script>
 <script src="/assets/app.js${v("app.js")}" defer></script>
 ${js.map(f => `<script src="/assets/${f}${v(f)}" defer></script>`).join("\n")}
+${SITE.cfAnalyticsToken ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${JSON.stringify({ token: SITE.cfAnalyticsToken })}'></script>` : ""}
 </body>
 </html>
 `;
